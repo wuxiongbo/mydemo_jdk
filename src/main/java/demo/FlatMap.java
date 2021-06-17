@@ -20,48 +20,33 @@ public class FlatMap {
 
     @Test
     public void intersectByKeyTest(){
-        List<Data2> listOfData2 = new ArrayList<Data2>();
-        listOfData2.add(new Data2(10501, "JOE"  , "Type1"));
-        listOfData2.add(new Data2(10603, "SAL"  , "Type5"));
-        listOfData2.add(new Data2(40514, "PETER", "Type4"));
-        listOfData2.add(new Data2(59562, "JIM"  , "Type2"));
-        listOfData2.add(new Data2(29415, "BOB"  , "Type1"));
-        listOfData2.add(new Data2(61812, "JOE"  , "Type9"));
-        listOfData2.add(new Data2(98432, "JOE"  , "Type7"));
-        listOfData2.add(new Data2(62556, "JEFF" , "Type1"));
-        listOfData2.add(new Data2(10599, "TOM"  , "Type4"));
+        List<Data1> listOfData2 = new ArrayList<>();
+        listOfData2.add(new Data1(10501, "JOE"  , 100));
+        listOfData2.add(new Data1(10603, "SAL"  , 100));
+        listOfData2.add(new Data1(40514, "PETER", 100));
+        listOfData2.add(new Data1(59562, "JIM"  , 100));
+        listOfData2.add(new Data1(29415, "BOB"  , 100));
+        listOfData2.add(new Data1(61812, "JOE"  , 100));
+        listOfData2.add(new Data1(98432, "JOE"  , 100));
+        listOfData2.add(new Data1(62556, "JEFF" , 100));
+        listOfData2.add(new Data1(10599, "TOM"  , 100));
 
-
-        List<Data1> listOfData1 = new ArrayList<Data1>();
+        List<Data1> listOfData1 = new ArrayList<>();
         listOfData1.add(new Data1(10501, "JOE"    ,3000000));
         listOfData1.add(new Data1(10603, "SAL"    ,6225000));
         listOfData1.add(new Data1(40514, "PETER"  ,2005000));
         listOfData1.add(new Data1(59562, "JIM"    ,3000000));
         listOfData1.add(new Data1(29415, "BOB"    ,3000000));
+        listOfData1.add(new Data1(61813, "JOE"  , 3000000));
 
+        List<Integer> ids = listOfData2.stream().map(Data1::getId).collect(Collectors.toList());
+        for (Data1 data1 : listOfData1) {
+            if(!ids.contains(data1.getId())){
+                listOfData2.add(data1);
+            }
+        }
 
-
-        List<OutputData> result = listOfData1.stream()
-                .flatMap(x -> listOfData2.stream()
-                        .filter(y -> x.getId() == y.getId())
-                        .map(
-                                y -> new OutputData(y.getId(), x.getName(), y.getType(), x.getAmount())
-                        )
-                )
-                .collect(Collectors.toList());
-        System.out.println(result);
-
-
-        /*difference by key*/
-        List<Data1> data1IntersectResult = listOfData1.stream()
-                .filter(
-                        data1 -> listOfData2.stream()
-                                .map(Data2::getId)
-                                .collect(Collectors.toList())
-                                .contains(data1.getId())
-                )
-                .collect(Collectors.toList());
-        System.out.println(data1IntersectResult);
+        System.out.println(listOfData2);
     }
 }
 
