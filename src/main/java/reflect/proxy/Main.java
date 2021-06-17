@@ -18,11 +18,12 @@ public class Main {
 
         // 将被代理类ConcreteClassNoInterface设置成父类，
         enhancer.setSuperclass(ConcreteClassNoInterface.class);
+
         // 设置拦截器ConcreteClassInterceptor
         enhancer.setCallback(new ConcreteClassInterceptor());
 
         // 执行enhancer.create()动态生成一个代理类，并从Object强制转型成父类型ConcreteClassNoInterface。
-        ConcreteClassNoInterface ccni=(ConcreteClassNoInterface)enhancer.create();
+        ConcreteClassNoInterface ccni = (ConcreteClassNoInterface)enhancer.create();
 
         // 在代理类上调用方法
         ccni.getConcreteMethodA("shensy");

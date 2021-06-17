@@ -20,18 +20,21 @@ public class ConcreteClassInterceptor implements MethodInterceptor {
     /**
      * @param obj         由CGLib动态生成的代理类实例
      * @param method      上文中实体类所调用的被代理的方法引用
-     * @param arg         参数值列表
+     * @param args         参数值列表
      * @param proxy       生成的代理类对方法的代理引用
      * @return            从代理实例的方法调用返回的值
      * @throws Throwable
      */
     @Override
-    public Object intercept(Object obj, Method method, Object[] arg, MethodProxy proxy) throws Throwable {
+    public Object intercept(Object obj, Method method, Object[] args, MethodProxy proxy) throws Throwable {
         System.out.println("Before:"+method);
 
         // 调用代理类实例上的proxy方法的父类方法（即实体类ConcreteClassNoInterface中对应的方法）
-        Object object = proxy.invokeSuper(obj, arg);
+        Object object = proxy.invokeSuper(obj, args);
         System.out.println("result:"+object);
+
+        // obj是代理，那如何获取 obj 的父类？
+        System.out.println("obj:");
 
         System.out.println("After:"+method);
         return object;
