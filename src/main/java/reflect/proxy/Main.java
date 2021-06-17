@@ -3,8 +3,8 @@ package reflect.proxy;
 import net.sf.cglib.proxy.Enhancer;
 
 /**
- * <p>描述类的信息</p>
- *
+ * <p> CGLib 方法拦截 MethodInterceptor </p>
+ *  https://www.iteye.com/blog/shensy-1873155
  * <pre>
  * @author wuxiongbo
  * @date 2021/6/17
