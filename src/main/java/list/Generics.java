@@ -1,12 +1,9 @@
-package demo;
+package list;
 
 import java.io.Serializable;
 import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
-import java.util.stream.Collectors;
 
 /**
  * <p>描述类的信息</p>
@@ -16,7 +13,7 @@ import java.util.stream.Collectors;
  * @date 2021/6/9
  * </pre>
  */
-public class Demo11 {
+public class Generics {
 
 
     public static <T, R extends Comparable<? super R>> Comparator<T> comparing(

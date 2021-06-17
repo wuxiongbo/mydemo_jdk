@@ -1,7 +1,5 @@
-package demo;
+package list;
 
-import javax.sound.midi.Soundbank;
-import java.math.BigDecimal;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -13,7 +11,7 @@ import java.util.stream.Collectors;
  * @date 2021/6/2
  * </pre>
  */
-public class Demio {
+public class MergeList {
     public static void main(String[] args){
 //      Integer a= null;
 //      System.out.println(a>1);
@@ -61,6 +59,7 @@ public class Demio {
 //        HashMap<Integer, String> hashMap = new HashMap<>();
 //        System.out.println(hashMap.get(1));
 
+        //===================集合交集 方法一 ========================
         String s1 =             "50000,100000,200000,300000,500000,";
         String s2 = "10000,30000,50000,100000,";
         String[] a1 = s1.split(",");
@@ -82,6 +81,8 @@ public class Demio {
         for(String s : list){
             System.out.println(s);
         }
+
+        //===================集合交集  方法二 ========================
 
         List<String> list1 = new ArrayList(Arrays.asList(a1));
         List<String> list2 = new ArrayList(Arrays.asList(a2));

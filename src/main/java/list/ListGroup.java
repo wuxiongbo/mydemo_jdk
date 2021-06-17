@@ -1,4 +1,4 @@
-package demo;
+package list;
 
 import lombok.Data;
 
@@ -6,14 +6,14 @@ import java.util.*;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
- * <p>描述类的信息</p>
+ * <p>List 按组分类</p>
  *
  * <pre>
  * @author wuxiongbo
  * @date 2021/6/10
  * </pre>
  */
-public class Demo1232 {
+public class ListGroup {
     public static void main(String[] args){
         List<Answer> answerList = new ArrayList<>();
         answerList.add(new Answer("1","B"));

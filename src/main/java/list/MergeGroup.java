@@ -1,17 +1,17 @@
-package demo;
+package list;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
 /**
- * <p>描述类的信息</p>
+ * <p> 合并组 </p>
  *
  * <pre>
  * @author wuxiongbo
  * @date 2021/6/9
  * </pre>
  */
-public class Demo22 {
+public class MergeGroup {
     public static void main(String[] args){
         List<List<String>> groupList = new ArrayList<>();
 
@@ -31,38 +31,39 @@ public class Demo22 {
 
         System.out.println(groupList);
 
+        //合并后
+        Map<Integer,List<String>> groupMap = new LinkedHashMap<>();
 
-        Map<Integer,List<String>> newGroupList = new LinkedHashMap<>();
         Integer initKey = 1;
         if (null != groupList && groupList.size() > 0) {
             Iterator it = groupList.iterator();
             while(it.hasNext()){
                 List<String> item = (List<String>) it.next();
-                if(newGroupList.get(initKey)==null){
-                    newGroupList.put(initKey,item);
+                if(groupMap.get(initKey)==null){
+                    groupMap.put(initKey,item);
                 }else{
                     //有交集
                     boolean add = true;
                     for (int i = 1; i <= initKey; i++) {
                         // 新答案组
-                        List<String> temp = new ArrayList<>(newGroupList.get(i));
+                        List<String> temp = new ArrayList<>(groupMap.get(i));
                         // 新答案组
                         if(isNotEmpty(overlap(temp,item))){
-                            newGroupList.get(i).addAll(item);
-                            List<String> collect = newGroupList.get(i).stream().distinct().collect(Collectors.toList());
-                            newGroupList.put(i,collect);
+                            groupMap.get(i).addAll(item);
+                            List<String> collect = groupMap.get(i).stream().distinct().collect(Collectors.toList());
+                            groupMap.put(i,collect);
                             add=false;
                         }
                     }
                     if(add){
-                        newGroupList.put(++initKey,item);
+                        groupMap.put(++initKey,item);
                     }
                 }
 
             }
         }
 
-        System.out.println(newGroupList);
+        System.out.println(groupMap);
 
 
     }
