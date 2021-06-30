@@ -1,8 +1,9 @@
 package monitor.event;
 
-import monitor.event.impl.Listener;
-import monitor.event.impl.Listenerable;
+import monitor.event.impl.CRUDListener;
+import monitor.event.impl.CRUDListenerable;
 import monitor.event.interfaces.IListener;
+import monitor.event.interfaces.IListenerable;
 
 /**
  * <p>描述类的信息</p>
@@ -15,19 +16,20 @@ import monitor.event.interfaces.IListener;
 public class Test {
     public static void main(String[] args) {
         //监听器 (观察者)
-        IListener listener = new Listener();
+        IListener listener = new CRUDListener();
 
         // 事件源 (被观察者)
-        Listenerable listenerable = new Listenerable();
+        IListenerable listenerable = new CRUDListenerable();
 
-        //事件源 注册 监听器
+        // 给事件源 注册 监听器
         listenerable.setListener(listener);
 
+
         // 触发save事件。   被观察者 创建相应事件 并通知 观察者
-        listenerable.save();
+        ((CRUDListenerable)listenerable).save();
 
         // 触发remove事件。 被观察者 创建相应事件 并通知 观察者
-        listenerable.remove();
+        ((CRUDListenerable)listenerable).remove();
     }
 }
 

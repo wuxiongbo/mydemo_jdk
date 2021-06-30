@@ -22,6 +22,7 @@ public class EventSource {
     // 如果监听事件源的事件，注册监听器可以加入此列表
     private Vector<EventListener> listenerList = new Vector<>();
 
+
     //注册监听器
     public void addListener(EventListener eventListener) {
         listenerList.add(eventListener);
@@ -42,15 +43,14 @@ public class EventSource {
         }
     }
 
-    //接受外部事件，通知(调用)所有的监听器
+    //接受外部事件，     通知(调用)所有的监听器
     public void notifyListenerEvents(PrintEvent event) {
         for(EventListener moniterListener : listenerList) {
             // 监听器类，被调用handleEvent方法。 对事件进行处理。
             ((Listener)moniterListener).handleEvent(event);
         }
     }
-
-    //方法内创建特定事件，通知所有的监听器
+    //方法内创建特定事件，通知(调用)所有的监听器
     public void doCloseWindows() {
         this.notifyListenerEvents(new PrintEvent("closeWindows"));
     }

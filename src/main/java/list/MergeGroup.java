@@ -19,8 +19,9 @@ public class MergeGroup {
         a.add("1");
         a.add("3");
         List<String> b = new ArrayList<>();
+        b.add("1");
         b.add("2");
-        b.add("4");
+        b.add("3");
         List<String> c = new ArrayList<>();
         c.add("5");
         c.add("6");
@@ -35,32 +36,34 @@ public class MergeGroup {
         Map<Integer,List<String>> groupMap = new LinkedHashMap<>();
 
         Integer initKey = 1;
-        if (null != groupList && groupList.size() > 0) {
-            Iterator it = groupList.iterator();
-            while(it.hasNext()){
-                List<String> item = (List<String>) it.next();
+        if (isNotEmpty(groupList)) {
+            for (List<String> group : groupList) {
                 if(groupMap.get(initKey)==null){
-                    groupMap.put(initKey,item);
+                    groupMap.put(initKey,group);
                 }else{
-                    //有交集
-                    boolean add = true;
+                    // 有合并
+                    boolean merged = false;
                     for (int i = 1; i <= initKey; i++) {
                         // 新答案组
-                        List<String> temp = new ArrayList<>(groupMap.get(i));
-                        // 新答案组
-                        if(isNotEmpty(overlap(temp,item))){
-                            groupMap.get(i).addAll(item);
-                            List<String> collect = groupMap.get(i).stream().distinct().collect(Collectors.toList());
-                            groupMap.put(i,collect);
-                            add=false;
+                        List<String> newGroup = new ArrayList<>(groupMap.get(i));
+
+//                        合并策略
+                        boolean filter = contains(newGroup,group);
+//                        boolean filter = isNotEmpty(overlap(newGroup,group));
+                        if(filter){
+                            newGroup.addAll(group);
+                            newGroup = newGroup.stream().distinct().sorted().collect(Collectors.toList());
+                            groupMap.put(i,newGroup);
+                            merged = true;
+                            break;
                         }
                     }
-                    if(add){
-                        groupMap.put(++initKey,item);
+                    if(!merged){
+                        groupMap.put(++initKey,group);
                     }
                 }
-
             }
+
         }
 
         System.out.println(groupMap);
@@ -68,10 +71,14 @@ public class MergeGroup {
 
     }
 
-    static boolean isNotEmpty(List<String> list){
+    private static <T> boolean isNotEmpty(List<T> list){
         return list!=null&&list.size()!=0;
     }
 
+
+    private static <T> boolean contains(List<T> list1,List<T> list2){
+        return list1.containsAll(list2) || list2.containsAll(list1);
+    }
 
     private static <T> List<T> overlap(List<T> list1,List<T> list2){
         List<T> collect = list1.stream().filter(num -> list2.contains(num))

@@ -12,7 +12,7 @@ import monitor.event.interfaces.IListenerable;
  * @date 2021/6/16
  * </pre>
  */
-public class Listenerable implements IListenerable {
+public class CRUDListenerable implements IListenerable {
 
     private IListener listener;
 
