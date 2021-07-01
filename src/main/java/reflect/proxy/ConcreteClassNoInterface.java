@@ -10,7 +10,7 @@ package reflect.proxy;
  * @date 2021/6/17
  * </pre>
  */
-public class ConcreteClassNoInterface {
+public class ConcreteClassNoInterface{
     public String getConcreteMethodA(String str){
         System.out.println("ConcreteMethod A ... "+str);
         return str;

@@ -29,7 +29,7 @@ public class Demo {
     @Test
     void test2(){
         try {
-            System.out.println("接口实现类");
+            System.out.println("获取路径下的所有类的文件名");
             for(Class<?> c: getAllClass(Main.class)){
                 System.out.println(c.getName());
             }

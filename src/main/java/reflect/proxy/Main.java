@@ -14,7 +14,7 @@ public class Main {
 
     public static void main(String[] args){
         // 这里Enhancer类是CGLib中的一个字节码增强器，它可以方便的对你想要处理的类进行扩展，以后会经常看到它。
-        Enhancer enhancer=new Enhancer();
+        Enhancer enhancer = new Enhancer();
 
         // 将被代理类ConcreteClassNoInterface设置成父类，
         enhancer.setSuperclass(ConcreteClassNoInterface.class);
