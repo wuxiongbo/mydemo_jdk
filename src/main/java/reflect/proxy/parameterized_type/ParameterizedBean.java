@@ -15,10 +15,29 @@ import java.util.Map;
  * @date 2021/7/1
  * </pre>
  */
-public class ParameterizedBean implements Interface1<Integer>,Interface2<Long,Short>,Interface3 {
+public class ParameterizedBean implements
+        Interface1<Integer>,
+        Interface2<Long,Short>,
+        Interface3,
+// 泛型的类型约束演示
+//        Interface4<Long,Interface1Long> ,
+        Interface4<Integer,Interface1Integer>
+{
     List<String> list1;               //1 true
     List list2;                       //false
     Map<String,Long> map1;            //3 true
     Map map2;                         //false
     Map.Entry<Long,Short> map3;       //5 true
+
+    @Override
+    public <A extends Interface1<?>> void demo2(A a) {
+
+    }
+}
+
+
+class Interface1Integer implements Interface1<Integer>{
+}
+
+class Interface1Long implements Interface1<Long>{
 }

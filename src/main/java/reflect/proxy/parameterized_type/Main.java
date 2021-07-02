@@ -121,4 +121,23 @@ public class Main {
         }
     }
 
+    @Test
+    public void test5(){
+        Interface4 i4= new Interface4<Integer,ParameterizedBean>(){
+            @Override
+            public <A extends Interface1<?>> void demo2(A a) {
+                System.out.println(a.getClass());
+            }
+        };
+
+//        i4.demo2("aaa");
+
+
+        Interface5 i5 = new Interface5(){
+        };
+
+        i4.demo2(i5);
+
+    }
+
 }
