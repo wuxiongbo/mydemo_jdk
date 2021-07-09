@@ -19,9 +19,11 @@ public class ParameterizedBean implements
         Interface1<Integer>,
         Interface2<Long,Short>,
         Interface3,
+
 // 泛型的类型约束演示
 //        Interface4<Long,Interface1Long> ,
         Interface4<Integer,Interface1Integer>
+//        Interface4<Long,Interface1X>
 {
     List<String> list1;               //1 true
     List list2;                       //false
@@ -40,4 +42,7 @@ class Interface1Integer implements Interface1<Integer>{
 }
 
 class Interface1Long implements Interface1<Long>{
+}
+
+class Interface1X implements Interface1{
 }

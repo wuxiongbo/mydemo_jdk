@@ -2,6 +2,11 @@ package reflect.proxy.parameterized_type;
 
 /**
  * <p>泛型的使用</p>
+ * 代码含义：
+ *   接口 Interface4  用到两个泛型， R 、T
+ *   T 的约束：
+ *      1.  T 必须继承自 Interface1 接口。
+ *      2.  Interface1 必须是 R类型 接口。
  *
  * <pre>
  * @author wuxiongbo

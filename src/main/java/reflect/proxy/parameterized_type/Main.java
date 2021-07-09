@@ -121,6 +121,7 @@ public class Main {
         }
     }
 
+//   泛型类型约束演示
     @Test
     public void test5(){
         Interface4 i4= new Interface4<Integer,ParameterizedBean>(){
@@ -131,7 +132,6 @@ public class Main {
         };
 
 //        i4.demo2("aaa");
-
 
         Interface5 i5 = new Interface5(){
         };
