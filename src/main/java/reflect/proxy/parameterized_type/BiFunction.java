@@ -4,17 +4,24 @@ import java.util.Objects;
 import java.util.function.Function;
 
 /**
- * <p>这是jdk源码，这里抽出来，做泛型的学习</p>
+ * <p>这是jdk源码，这里抽出来，做泛型的学习示例</p>
  *  代码释义：
  *  类     BiFunction<T, U, R>
- *        说明： <T, U, R>  声明  本类用到了 T, U, R 这三个类型
+ *        说明： <T, U, R>  声明 本类会用到 T, U, R 这三个类型。 三个类型也可以不用。
+ *
  *  方法   default <V> java.util.function.BiFunction<T, U, V> andThen(Function<? super R, ? extends V> after)
- *        说明： <V>   声明 本方法用到了  V 类型
- *              Function<? super R, ? extends V>   传入的参数是Function的实现类。 ？ 占位符表示实现类中泛型的类型。
- *                      <1, 2>
- *                      <? super R, ? extends V> 就是对类型 ？ 的约束。
- *                                            位置1 处的占位符 必须是R的父类，
- *                                            位置2 处的占位符 必须继承自V。
+ *        说明： 1. <V>
+ *                    声明 本方法用到了  V 类型
+ *              2. Function<? super R, ? extends V>
+ *                    传入的参数是Function的实现类。 ？ 占位符表示实现类的类型。
+ *
+ *                      <1, 2>                 为了便于下面的描述，这里加个占位符位置标识
+ *
+ *                      <? super R, ? extends V> 就是对类型 ？ 的约束，具体如下：
+ *                                                  占位符 位置1 代表的类 必须是R的父类，
+ *                                                  占位符 位置2 代表的类 必须继承自V。
+ *              3. java.util.function.BiFunction<T, U, V>
+ *                     返回值是 BiFunction 类型。
  *
  *
  * <pre>

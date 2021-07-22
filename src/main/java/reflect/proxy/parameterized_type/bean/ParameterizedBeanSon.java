@@ -1,4 +1,4 @@
-package reflect.proxy.parameterized_type;
+package reflect.proxy.parameterized_type.bean;
 
 /**
  * <p>描述类的信息</p>

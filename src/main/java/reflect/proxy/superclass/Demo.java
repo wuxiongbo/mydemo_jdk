@@ -20,8 +20,8 @@ public class Demo {
     @Test
     void test1(){
         String a  = "121";
-        List<Class<?>> clazzs = getSuperClass(a.getClass());
-        for (Class<?> clazz : clazzs) {
+        List<Class<?>> clazzList = getSuperClass(a.getClass());
+        for (Class<?> clazz : clazzList) {
             System.out.println(clazz.toGenericString());
         }
     }
@@ -46,13 +46,18 @@ public class Demo {
      * @return
      */
     public static List<Class<?>> getSuperClass(Class<?> clazz){
-        List<Class<?>> clazzs = new ArrayList<Class<?>>();
-        Class<?> suCl=clazz.getSuperclass();
-        while(suCl!=null){
-            clazzs.add(suCl);
-            suCl=suCl.getSuperclass();
+        List<Class<?>> clazzList = new ArrayList<Class<?>>();
+
+        // 获取父类
+        Class<?> suClass=clazz.getSuperclass();
+
+        // 遍历添加 父类的父类
+        while(suClass!=null){
+            clazzList.add(suClass);
+            suClass = suClass.getSuperclass();
         }
-        return clazzs;
+
+        return clazzList;
     }
 
     /**
@@ -63,7 +68,7 @@ public class Demo {
      */
     public static List<Class<?>> getAllClass(Class<?> cls) throws ClassNotFoundException{
         List<Class<?>> clazzs=new ArrayList<>();
-        for(Class<?> cl: getClazzs(cls)){
+        for(Class<?> cl: getClazzList(cls)){
             if(cls.isAssignableFrom(cl)&&!cls.equals(cl)){
                 clazzs.add(cl);
             }
@@ -78,23 +83,23 @@ public class Demo {
      * @return
      * @throws ClassNotFoundException
      */
-    public static List<Class<?>> getClazzs(Class<?> cls) throws ClassNotFoundException{
-        String pk = cls.getPackage().getName();
-        String path=pk.replace(".", "/");
+    public static List<Class<?>> getClazzList(Class<?> cls) throws ClassNotFoundException{
+        String packageName = cls.getPackage().getName();
+        String path=packageName.replace(".", "/");
         ClassLoader classLoader=Thread.currentThread().getContextClassLoader();
         URL url = classLoader.getResource(path);
-        return getClazzs(new File(url.getFile()), pk);
+        return getClazzList(new File(url.getFile()), packageName);
     }
 
 
     /**
      * 迭代查找类
      * @param dir
-     * @param pk
+     * @param packageName
      * @return
      * @throws ClassNotFoundException
      */
-    public static List<Class<?>> getClazzs(File dir, String pk) throws ClassNotFoundException{
+    public static List<Class<?>> getClazzList(File dir, String packageName) throws ClassNotFoundException{
         List<Class<?>> clazzs = new ArrayList<>();
         if(!dir.exists()){
             return clazzs;
@@ -104,12 +109,12 @@ public class Demo {
                 continue;
             }
             if(file.isDirectory()){
-                clazzs.addAll(getClazzs(file,pk+"."+file.getName()));
+                clazzs.addAll(getClazzList(file,packageName+"."+file.getName()));
             }
             String name=file.getName();
             System.out.println( "file:"+name);
             if(name.endsWith(".class")){
-                clazzs.add(Class.forName(pk+"."+name.substring(0,(name.length()-6))));
+                clazzs.add(Class.forName(packageName+"."+name.substring(0,(name.length()-6))));
             }
         }
         return clazzs;

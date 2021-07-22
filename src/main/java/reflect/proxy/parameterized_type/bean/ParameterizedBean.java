@@ -1,4 +1,9 @@
-package reflect.proxy.parameterized_type;
+package reflect.proxy.parameterized_type.bean;
+
+import reflect.proxy.parameterized_type.interfaces.Interface1;
+import reflect.proxy.parameterized_type.interfaces.Interface2;
+import reflect.proxy.parameterized_type.interfaces.Interface3;
+import reflect.proxy.parameterized_type.interfaces.Interface4;
 
 import java.util.List;
 import java.util.Map;
@@ -25,11 +30,15 @@ public class ParameterizedBean implements
         Interface4<Integer,Interface1Integer>
 //        Interface4<Long,Interface1X>
 {
-    List<String> list1;               //1 true
+    List<String> list1;               //1 true  是参数化类型
+
     List list2;                       //false
-    Map<String,Long> map1;            //3 true
+
+    Map<String,Long> map1;            //3 true  是参数化类型
+
     Map map2;                         //false
-    Map.Entry<Long,Short> map3;       //5 true
+
+    Map.Entry<Long,Short> map3;       //5 true  是参数化类型
 
     @Override
     public <A extends Interface1<?>> void demo2(A a) {
@@ -38,7 +47,7 @@ public class ParameterizedBean implements
 }
 
 
-class Interface1Integer implements Interface1<Integer>{
+class Interface1Integer implements Interface1<Integer> {
 }
 
 class Interface1Long implements Interface1<Long>{

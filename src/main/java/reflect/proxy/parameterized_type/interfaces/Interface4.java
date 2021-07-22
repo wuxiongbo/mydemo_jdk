@@ -1,4 +1,4 @@
-package reflect.proxy.parameterized_type;
+package reflect.proxy.parameterized_type.interfaces;
 
 /**
  * <p>泛型的使用</p>

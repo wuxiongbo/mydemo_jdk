@@ -21,11 +21,11 @@ public class SpringDemo {
 
         System.out.println(userNameField);
 
-        UserInfo user = new UserInfo()
-                .setUserId(111L)
-                .setUserName("zhangsan")
-                .setAge(18)
-                .setEmailAddress("1111@ww.com");
+        UserInfo user = new UserInfo();
+        user.setUserId(111L);
+        user.setUserName("zhangsan");
+        user.setAge(18);
+        user.setEmailAddress("1111@ww.com");
 
         // 获取属性的值
         String userName= (String)ReflectionUtils.getField(userNameField, user);

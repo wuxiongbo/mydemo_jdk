@@ -20,11 +20,16 @@ public class ListDistinct {
         List<String> b = new ArrayList<>();
         b.add("1");
         b.add("2");
+
         a.addAll(b);
+
         System.out.println(a);
 
         a = a.stream().sorted().distinct().collect(Collectors.toList());
 
         System.out.println(a);
+
+        List<String> collect = a.stream().filter(e -> e.equals("1")).collect(Collectors.toList());
+        System.out.println(collect);
     }
 }

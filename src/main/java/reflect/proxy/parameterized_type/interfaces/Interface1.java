@@ -1,4 +1,4 @@
-package reflect.proxy.parameterized_type;
+package reflect.proxy.parameterized_type.interfaces;
 
 /**
  * <p>描述类的信息</p>
@@ -8,5 +8,5 @@ package reflect.proxy.parameterized_type;
  * @date 2021/7/1
  * </pre>
  */
-public interface Interface3 {
+public interface Interface1<T> {
 }

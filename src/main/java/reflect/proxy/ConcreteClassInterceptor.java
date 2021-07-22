@@ -6,7 +6,9 @@ import net.sf.cglib.proxy.MethodProxy;
 import java.lang.reflect.Method;
 
 /**
- * <p> 自定义MethodInterceptor 拦截器</p>
+ * <p> 自定义实体类拦截器。
+ *     拦截器 需要实现 MethodInterceptor 接口 </p>
+ *
  *  在调用目标方法时，CGLib会回调MethodInterceptor接口方法拦截，来实现你自己的代理逻辑，类似于JDK中的InvocationHandler接口。
  *
  *  在本示例中，只在 调用 ‘被代理类’方法 前、后 各打印了一句话，当然实际编程中可以是其它复杂逻辑。

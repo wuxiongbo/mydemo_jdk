@@ -1,6 +1,11 @@
 package reflect.proxy.parameterized_type;
 
 import org.junit.jupiter.api.Test;
+import reflect.proxy.parameterized_type.bean.ParameterizedBean;
+import reflect.proxy.parameterized_type.bean.ParameterizedBeanSon;
+import reflect.proxy.parameterized_type.interfaces.Interface1;
+import reflect.proxy.parameterized_type.interfaces.Interface4;
+import reflect.proxy.parameterized_type.interfaces.Interface5;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
@@ -21,21 +26,22 @@ public class Main {
     /**
      *
      * 参数化类型
-     * 接口:reflect.proxy.parameterized_type.Interface1<java.lang.Integer>
+     * 接口:reflect.proxy.parameterized_type.interfaces.Interface1<java.lang.Integer>
      *     接口参数化类型:java.lang.Integer
      *
-     * 接口:reflect.proxy.parameterized_type.Interface2<java.lang.Long, java.lang.Short>
+     * 接口:reflect.proxy.parameterized_type.interfaces.Interface2<java.lang.Long, java.lang.Short>
      *     接口参数化类型:java.lang.Long
      *     接口参数化类型:java.lang.Short
      */
     @Test
     public void test1(){
-        // 获取父类
+        // 获取 ParameterizedBeanSon 的父类
         Class<?> superclass = ParameterizedBeanSon.class.getSuperclass();
-        // 获取类实现的所有接口
+        // 获取 父类实现的所有接口
         Type[] genericInterfaces = superclass.getGenericInterfaces();
         for (Type genericInterface : genericInterfaces) {
 
+            // 过滤出实现的接口中，参数化类型的接口
             if (genericInterface instanceof ParameterizedType){
                 System.out.print("参数化类型接口:"+genericInterface.getTypeName()+"   ");
 
@@ -62,8 +68,7 @@ public class Main {
         for(Field f:fields){
             //是否是ParameterizedType
             System.out.println(
-                    f.getName()+":"+
-                            (f.getGenericType() instanceof ParameterizedType)
+                    f.getName()+":"+ (f.getGenericType() instanceof ParameterizedType)
             );
         }
     }
@@ -75,21 +80,22 @@ public class Main {
      */
     @Test
     public void test3(){
+        // 获取类 ParameterizedBean 的全部属性
         Field[] fields = ParameterizedBean.class.getDeclaredFields();
 
         for(Field f:fields) {
-            // 获取参数化类型
+            // 过滤出 参数化类型的属性。
             if (f.getGenericType() instanceof ParameterizedType) {
                 ParameterizedType pType = (ParameterizedType) f.getGenericType();
                 System.out.print("变量类型：" + pType.getTypeName() + "     ");
 
-                // 获取成员变量参数化类型的参数
+                // 获取参数化类型成员变量的参数
                 Type[] types = pType.getActualTypeArguments();
 
                 for (Type t : types) {
                     System.out.print("类型：" + t.getTypeName());
                 }
-                System.out.println("");
+                System.out.println();
             }
         }
     }
@@ -98,16 +104,19 @@ public class Main {
      * 获取类型
      * getRawType
      *
-     * 变量名：list1  RawType：java.util.List
-     * 变量名：map1   RawType：java.util.Map
-     * 变量名：map3   RawType：java.util.Map$Entry
+     * 打印结果：
+     *   变量名：list1  RawType：java.util.List
+     *   变量名：map1   RawType：java.util.Map
+     *   变量名：map3   RawType：java.util.Map$Entry
      */
     @Test
     public void test4(){
+        // 获取类 ParameterizedBean 的全部属性
         Field[] fields = ParameterizedBean.class.getDeclaredFields();
 
         for(Field f:fields){
-            // 获取参数化类型
+
+            // 过滤出 参数化类型的属性。
             if(f.getGenericType() instanceof ParameterizedType){
                 ParameterizedType pType = (ParameterizedType) f.getGenericType();
                 System.out.print("变量名："+f.getName()+ "  ");
