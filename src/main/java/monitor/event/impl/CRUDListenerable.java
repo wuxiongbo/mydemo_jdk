@@ -29,24 +29,24 @@ public class CRUDListenerable implements IListenerable {
     }
 
     public void save(){
-        System.out.println("插入了一条数据");
-        IEvent event = new Event(this,"save");
-        this.triggerListener(event);
+        System.out.println("监听到了‘插入’事件");
+        IEvent saveEvent = new Event(this,"save");
+        this.triggerListener(saveEvent);
     }
     public void remove(){
-        System.out.println("删除了一条数据");
-        IEvent event = new Event(this,"remove");
-        this.triggerListener(event);
+        System.out.println("监听到了‘删除’事件");
+        IEvent removeEvent = new Event(this,"remove");
+        this.triggerListener(removeEvent);
     }
     public void modify(){
-        System.out.println("修改了一条数据");
-        IEvent event = new Event(this,"modify");
-        this.triggerListener(event);
+        System.out.println("监听到了‘修改’事件");
+        IEvent modifyEvent = new Event(this,"modify");
+        this.triggerListener(modifyEvent);
     }
     public void find(){
-        System.out.println("插入了一条数据");
-        IEvent event = new Event(this,"find");
-        this.triggerListener(event);
+        System.out.println("监听到了‘查询’事件");
+        IEvent findEvent = new Event(this,"find");
+        this.triggerListener(findEvent);
     }
 
 }

@@ -11,6 +11,6 @@ package monitor.observe.observe;
 public class Observe2 implements IObserve {
     @Override
     public void handleNotify(String message) {
-        System.out.println("2号接受的消息"+message);
+        System.out.println("2号观察者接受的消息"+message);
     }
 }

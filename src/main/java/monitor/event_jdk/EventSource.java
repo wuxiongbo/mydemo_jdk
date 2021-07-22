@@ -30,7 +30,7 @@ public class EventSource {
 
     //注册指定监听器
     public void addCloseWindowListener(EventListener eventListener) {
-        System.out.println("关注关闭窗口事件");
+        System.out.println("关注关闭窗口事件(即，注册 关窗 监听器)");
         listenerList.add(eventListener);
     }
 
@@ -43,7 +43,7 @@ public class EventSource {
         }
     }
 
-    //接受外部事件，     通知(调用)所有的监听器
+    // 每 接受一个外部事件，   都会 通知(调用)所有的监听器
     public void notifyListenerEvents(PrintEvent event) {
         for(EventListener moniterListener : listenerList) {
             // 监听器类，被调用handleEvent方法。 对事件进行处理。

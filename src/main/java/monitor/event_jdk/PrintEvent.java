@@ -31,9 +31,11 @@ public class PrintEvent extends EventObject {
     }
 
     public void doEvent() {
-        // getSource()
-        // The object on which the Event initially occurred.
-        System.out.println("准备通知一个事件源 source: " + this.getSource());
+        // getSource(),The object on which the Event initially occurred.
+        // 获取事件源
+        Object source = this.getSource();
+
+        System.out.println("准备通知一个事件源 source: " + source);
     }
 
 }
