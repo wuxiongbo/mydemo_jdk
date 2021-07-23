@@ -4,6 +4,9 @@ import monitor.event.interfaces.IEvent;
 import monitor.event.interfaces.IListener;
 import monitor.event.interfaces.IListenerable;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * <p>事件源类(被观察者)</p>
  *
@@ -15,6 +18,14 @@ import monitor.event.interfaces.IListenerable;
 public class CRUDListenerable implements IListenerable {
 
     private IListener listener;
+
+    private List<IListener> listeners = new ArrayList<>();
+
+
+    @Override
+    public void addListener(IListener listener) {
+        listeners.add(listener);
+    }
 
     //注册监听器
     @Override

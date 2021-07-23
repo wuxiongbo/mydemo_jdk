@@ -9,6 +9,8 @@ package monitor.event.interfaces;
  * </pre>
  */
 public interface IListenerable {
+    // 新增
+    void addListener(IListener listener);
 
     //为事件源注册监听器
     void setListener(IListener listener);

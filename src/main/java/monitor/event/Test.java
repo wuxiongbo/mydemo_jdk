@@ -2,6 +2,10 @@ package monitor.event;
 
 import monitor.event.impl.CRUDListener;
 import monitor.event.impl.CRUDListenerable;
+import monitor.event.impl.listener.CListener;
+import monitor.event.impl.listener.DListener;
+import monitor.event.impl.listener.RListener;
+import monitor.event.impl.listener.UListener;
 import monitor.event.interfaces.IListener;
 import monitor.event.interfaces.IListenerable;
 
@@ -20,9 +24,9 @@ public class Test {
 
 
         // 监听器 (观察者)
-        IListener listener = new CRUDListener();
+        IListener crudListener = new CRUDListener();
         // 给事件源 注册 监听器
-        listenerable.setListener(listener);
+        listenerable.setListener(crudListener);
 
 
         // 触发save事件。   被观察者 创建相应事件 并通知 观察者
@@ -33,6 +37,13 @@ public class Test {
         ((CRUDListenerable)listenerable).modify();
 
         ((CRUDListenerable)listenerable).find();
+
+        listenerable.addListener(new RListener());
+        listenerable.addListener(new CListener());
+        listenerable.addListener(new UListener());
+        listenerable.addListener(new DListener());
+
+
     }
 }
 
