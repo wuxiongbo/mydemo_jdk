@@ -1,7 +1,7 @@
 package asm.decorator;
 
 /**
- * <p>描述类的信息</p>
+ * <p>  静态代理  Account </p>
  *  定义一个 Account类的 Decorator，并包装 operation方法：
  *
  * <pre>

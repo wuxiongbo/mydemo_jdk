@@ -1,5 +1,3 @@
-import lombok.extern.slf4j.Slf4j;
-
 import java.math.BigDecimal;
 import java.util.*;
 
@@ -59,5 +57,26 @@ public class Test {
         if(a.get("1") !=null && a.get("1")){
             System.out.println("---------");
         }
+    }
+
+    @org.junit.jupiter.api.Test
+    void test6(){
+        boolean redis = false;
+        if(redis){
+
+        }else{
+            boolean mongo = false;
+            if(mongo){
+
+            }else{
+
+            }
+        }
+    }
+
+    @org.junit.jupiter.api.Test
+    void test7(){
+        String a = null;
+        System.out.println("a"+a);
     }
 }

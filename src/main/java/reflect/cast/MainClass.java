@@ -12,7 +12,6 @@ package reflect.cast;
  * </pre>
  */
 interface IA{
-
 }
 
 class A implements IA{

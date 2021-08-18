@@ -1,7 +1,7 @@
 package reflect.proxy.superclass;
 
 import org.junit.jupiter.api.Test;
-import reflect.proxy.Main;
+import reflect.proxy.cglib.Main;
 
 import java.io.File;
 import java.net.URL;
@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * <p>描述类的信息</p>
+ * <p>查找父类</p>
  *
  * <pre>
  * @author wuxiongbo
@@ -39,6 +39,18 @@ public class Demo {
         }
     }
 
+    @Test
+    void test3(){
+        String a = "";
+        Class<? extends String> aClass = a.getClass();
+
+        //  aClass  是 CharSequence的子类 则正常运行。 否则抛异常
+        Class<? extends CharSequence> aClass1 = aClass.asSubclass(CharSequence.class);
+
+        //  aClass  和 aClass1  是同一个对象
+        System.out.println(System.identityHashCode(aClass));
+        System.out.println(System.identityHashCode(aClass1));
+    }
 
     /**
      * 获取这个类的所有父类
