@@ -8,9 +8,10 @@ import java.lang.reflect.Method;
  */
 public class AOPHandle implements InvocationHandler {
 
+	// 增强方法
 	private AOPMethod method;
 
-	//保存对象
+	// 保存原始对象
 	private Object o;
 
 	public AOPHandle(Object o, AOPMethod method) {
@@ -18,8 +19,8 @@ public class AOPHandle implements InvocationHandler {
 		this.method=method;
 	}
 	/**
-	 * 这个方法会自动调用,Java动态代理机制
-	 * 会传入下面几个参数
+	 * 这个方法会自动调用,
+	 * Java动态代理机制会传入下面几个参数
 	 * @param  proxy	Object  代理对象的接口,不同于对象
 	 * @param  method	Method  被调用方法
 	 * @param  args    Object[] 方法参数
@@ -33,7 +34,8 @@ public class AOPHandle implements InvocationHandler {
 		//修改的地方在这里哦
 		this.method.before(proxy, method, args);
 
-		ret=method.invoke(o, args);
+		// 执行原始方法
+		ret = method.invoke(o, args);
 
 		//修改的地方在这里哦
 		this.method.after(proxy, method, args);

@@ -1,6 +1,6 @@
 package java8.list;
 
-import lombok.Data;
+import java8.list.bean.Answer;
 
 import java.math.BigDecimal;
 import java.util.*;
@@ -87,18 +87,6 @@ public class ListGroup {
 
     }
 
-
-
-
-    @Data
-    static class Answer{
-        String num;
-        String opt;
-        public Answer(String num,String opt){
-            this.num = num;
-            this.opt = opt;
-        }
-    }
 
 
     /**

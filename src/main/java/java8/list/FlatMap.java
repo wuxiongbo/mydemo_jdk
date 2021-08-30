@@ -1,7 +1,6 @@
 package java8.list;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import java8.list.bean.Data1;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -27,9 +26,11 @@ public class FlatMap {
         listOfData2.add(new Data1(59562, "JIM"  , 100));
         listOfData2.add(new Data1(29415, "BOB"  , 100));
         listOfData2.add(new Data1(61812, "JOE"  , 100));
+
         listOfData2.add(new Data1(98432, "JOE"  , 100));
         listOfData2.add(new Data1(62556, "JEFF" , 100));
         listOfData2.add(new Data1(10599, "TOM"  , 100));
+
 
         List<Data1> listOfData1 = new ArrayList<>();
         listOfData1.add(new Data1(10501, "JOE"    ,3000000));
@@ -49,30 +50,4 @@ public class FlatMap {
         System.out.println(listOfData2);
     }
 }
-
-@Data
-@AllArgsConstructor
-class Data1 {
-    private int id;
-    private String name;
-    private int amount;
-}
-
-@Data
-@AllArgsConstructor
-class Data2 {
-    private int id;
-    private String name;
-    private String type;
-}
-
-@Data
-@AllArgsConstructor
-class OutputData {
-    private int id;
-    private String name;
-    private String type;
-    private int amount;
-}
-
 

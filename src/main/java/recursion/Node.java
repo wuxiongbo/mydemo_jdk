@@ -1,4 +1,4 @@
-package 递归封装数结构;
+package recursion;
 
 import lombok.Data;
 
