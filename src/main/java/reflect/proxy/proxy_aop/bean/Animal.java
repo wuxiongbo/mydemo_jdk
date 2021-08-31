@@ -1,14 +1,14 @@
 package reflect.proxy.proxy_aop.bean;
 
 public interface Animal {
-	//ÉèÖÃÃû×Ö
+	//è®¾ç½®åå­—
 	void setName(String name);
-	//»ñÈ¡Ãû×Ö
+	//è·å–åå­—
 	String getName();
-	//½ĞÉù
+	//å«å£°
 	void say();
-	//»ñÈ¡ÆÜĞÔ
+	//è·å–æ –æ€§
 	void getProperty();
-	//ÉèÖÃÆÜĞÔ
+	//è®¾ç½®æ –æ€§
 	void setProperty(String Property);
 }

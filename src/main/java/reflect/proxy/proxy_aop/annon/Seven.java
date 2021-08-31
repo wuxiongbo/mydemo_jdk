@@ -11,8 +11,8 @@ import java.lang.annotation.Target;
 @Target({ElementType.FIELD, ElementType.METHOD})
 public @interface Seven {
 	
-	public String value() default "Ğ¡ºÚ";
+	public String value() default "å°é»‘";
 	
-	public String Property() default "ÎŞÊôĞÔ";
+	public String Property() default "æ— å±æ€§";
 	
 }

@@ -12,22 +12,22 @@ import java.lang.reflect.Proxy;
 public class AnimalFactory {
 
 	/***
-	 * »ñÈ¡¶ÔÏó£¬»ù´¡·½·¨
+	 * è·å–å¯¹è±¡ï¼ŒåŸºç¡€æ–¹æ³•
 	 * @param obj
 	 * @return
 	 */
 	private static Object getAnimalBase(Object obj, AOPMethod method){
-		//»ñÈ¡´úÀí¶ÔÏó
+		//è·å–ä»£ç†å¯¹è±¡
 		return Proxy.newProxyInstance(obj.getClass().getClassLoader(),
 				obj.getClass().getInterfaces(), 
 				new AOPHandle(
-						// ÕâÀïÊµÏÖÁË ×¢½âµÄÖµ×¢Èë
+						// è¿™é‡Œå®ç°äº† æ³¨è§£çš„å€¼æ³¨å…¥
 						AnnoInjection.getBean(obj),
 						method));
 	}
 	
 	/***
-	 * »ñÈ¡¶ÔÏó·½·¨¡£  by  obj
+	 * è·å–å¯¹è±¡æ–¹æ³•ã€‚  by  obj
 	 * @param obj
 	 * @return
 	 */
@@ -36,7 +36,7 @@ public class AnimalFactory {
 		return (T) getAnimalBase(obj,aopMethod);
 	}
 	/***
-	 * »ñÈ¡¶ÔÏó·½·¨  by  className
+	 * è·å–å¯¹è±¡æ–¹æ³•  by  className
 	 * @param className
 	 * @return
 	 */
@@ -52,7 +52,7 @@ public class AnimalFactory {
 	}
 
 	/***
-	 * »ñÈ¡¶ÔÏó·½·¨  by  clazz
+	 * è·å–å¯¹è±¡æ–¹æ³•  by  clazz
 	 * @param clazz
 	 * @return
 	 */
@@ -60,7 +60,7 @@ public class AnimalFactory {
 	public static <T> T getAnimal(Class<?> clazz, AOPMethod method){
 		Object obj=null;
 		try {
-			// ½«Ä¿±ê¶ÔÏóÊµÀı»¯ºó¡££¬×÷ÎªÈë²Î
+			// å°†ç›®æ ‡å¯¹è±¡å®ä¾‹åŒ–åã€‚ï¼Œä½œä¸ºå…¥å‚
 			obj= getAnimalBase(clazz.newInstance(),method);
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -10,6 +10,7 @@ package asm.decorator;
  * </pre>
  */
 public class AccountWithSecurityCheck implements Account {
+    // 组合关系
     private Account account;
 
     public AccountWithSecurityCheck(Account account) {

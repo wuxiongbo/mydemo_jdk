@@ -7,9 +7,9 @@ import java.lang.reflect.Method;
  */
 public interface AOPMethod{
 
-	//实例方法执行前执行的方法
+	//瀹炰緥鏂规硶鎵ц鍓嶆墽琛岀殑鏂规硶
 	void after(Object proxy, Method method, Object[] args);
 
-	//实例方法执行后执行的方法
+	//瀹炰緥鏂规硶鎵ц鍚庢墽琛岀殑鏂规硶
 	void before(Object proxy, Method method, Object[] args);
 }

@@ -13,21 +13,21 @@ public class AOPTest {
 
 	public static void main(String[] args) {
 
-		// ÓÉ¹¤³§´´½¨µÄ dog ¿ÉÒÔÊµÏÖ×¢½â×¢Èë
+		// ç”±å·¥å‚åˆ›å»ºçš„ dog å¯ä»¥å®ç°æ³¨è§£æ³¨å…¥
 		Animal dog = AnimalFactory.getAnimal(Dog.class, new AOPMethod() {
-			// ÕâÀïĞ´·½·¨Ö´ĞĞÇ°µÄAOPÇĞÈë·½·¨
+			// è¿™é‡Œå†™æ–¹æ³•æ‰§è¡Œå‰çš„AOPåˆ‡å…¥æ–¹æ³•
 			@Override
 			public void before(Object proxy, Method method, Object[] args) {
 				if (method.getName().equals("getProperty")) {
-					System.err.println("³É¹¦À¹½Ø" + method.getName() + "·½·¨,Æô¶¯");
+					System.err.println("æˆåŠŸæ‹¦æˆª" + method.getName() + "æ–¹æ³•,å¯åŠ¨");
 				}
 			}
 
-			// ÕâÀïĞ´·½·¨Ö´ĞĞºóµÄAOPÇĞÈë·½·¨
+			// è¿™é‡Œå†™æ–¹æ³•æ‰§è¡Œåçš„AOPåˆ‡å…¥æ–¹æ³•
 			@Override
 			public void after(Object proxy, Method method, Object[] args) {
 				if (method.getName().equals("getProperty")) {
-					System.err.println("³É¹¦À¹½Ø" + method.getName() + "·½·¨,½áÊø");
+					System.err.println("æˆåŠŸæ‹¦æˆª" + method.getName() + "æ–¹æ³•,ç»“æŸ");
 				}
 			}
 		});
@@ -35,12 +35,12 @@ public class AOPTest {
 
 		dog.say();
 		String name1 =  dog.getName();
-		System.out.println("ÎÒµÄÃû×ÖÊÇ" + name1);
+		System.out.println("æˆ‘çš„åå­—æ˜¯" + name1);
 
-		dog.setName("¶ş¹·×Ó");
+		dog.setName("äºŒç‹—å­");
 
 		String name2 =  dog.getName();
-		System.out.println("ÎÒµÄÃû×ÖÊÇ" + name2);
+		System.out.println("æˆ‘çš„åå­—æ˜¯" + name2);
 
 		dog.getProperty();
 	}

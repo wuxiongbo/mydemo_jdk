@@ -7,40 +7,40 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
 /**
- * ÊµÏÖ×¢½â×¢Èë
+ * å®ç°æ³¨è§£æ³¨å…¥
  * @author Administrator
  */
 public class AnnoInjection {
 
 	/**
 	 *
-	 * @param obj  ÒÑ¾­ÊµÀı»¯µÄ¶ÔÏó¡£ ¿ÉÀí½âÎª´¿¾²Ì¬
+	 * @param obj  å·²ç»å®ä¾‹åŒ–çš„å¯¹è±¡ã€‚ å¯ç†è§£ä¸ºçº¯é™æ€
 	 * @return
 	 */
 	public static Object getBean(Object obj) {
 		try {
-			// »ñµÃÀàµÄÊôĞÔ
+			// è·å¾—ç±»çš„å±æ€§
 			Field f[] = obj.getClass().getDeclaredFields();
-			// ±éÀúÀàµÄÊôĞÔ
+			// éå†ç±»çš„å±æ€§
 			for (Field ff : f) {
-				// »ñµÃÊôĞÔÉÏµÄ @Seven ×¢½â
+				// è·å¾—å±æ€§ä¸Šçš„ @Seven æ³¨è§£
 				Seven s = ff.getAnnotation(Seven.class);
 				if (s != null) {
-					System.err.println("×¢Èë" + ff.getName() + "ÊôĞÔ" + "\t\t" + s.value());
-					// ·´Éäµ÷ÓÃ ÀàµÄ public set·½·¨£¬½«×¢½âµÄÖµ×¢Èëµ½ÀàµÄÊôĞÔ¡£Èç¹ûÎª·ÃÎÊ¼¶±ğprivate,ÄÇÃ´¿ÉÒÔÖ±½ÓÊ¹ÓÃÊôĞÔµÄ set(obj, value);
+					System.err.println("æ³¨å…¥" + ff.getName() + "å±æ€§" + "\t\t" + s.value());
+					// åå°„è°ƒç”¨ ç±»çš„ public setæ–¹æ³•ï¼Œå°†æ³¨è§£çš„å€¼æ³¨å…¥åˆ°ç±»çš„å±æ€§ã€‚å¦‚æœä¸ºè®¿é—®çº§åˆ«private,é‚£ä¹ˆå¯ä»¥ç›´æ¥ä½¿ç”¨å±æ€§çš„ set(obj, value);
 					obj.getClass()
 							.getMethod("set" + ff.getName().substring(0, 1).toUpperCase() + ff.getName().substring(1),
 									new Class<?>[] { String.class })
 							.invoke(obj, s.value());
 				}
 			}
-			// »ñµÃÀàµÄËùÓĞ·½·¨
+			// è·å¾—ç±»çš„æ‰€æœ‰æ–¹æ³•
 			Method m[] = obj.getClass().getDeclaredMethods();
 			for (Method mm : m) {
-				// »ñµÃÀàµÄ·½·¨ÉÏµÄ×¢½â
+				// è·å¾—ç±»çš„æ–¹æ³•ä¸Šçš„æ³¨è§£
 				Seven s = mm.getAnnotation(Seven.class);
 				if (s != null) {
-					System.err.println("×¢Èë" + mm.getName() + "·½·¨" + "\t" + s.Property());
+					System.err.println("æ³¨å…¥" + mm.getName() + "æ–¹æ³•" + "\t" + s.Property());
 					mm.invoke(obj, s.Property());
 				}
 			}

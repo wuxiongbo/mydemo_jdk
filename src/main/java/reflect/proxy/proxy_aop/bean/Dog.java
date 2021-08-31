@@ -25,11 +25,11 @@ public class Dog implements Animal {
 
 	@Override
 	public void say() {
-		System.out.println("Ğ¡¹·:ÍôÍôÍôÍô.....");
+		System.out.println("å°ç‹—:æ±ªæ±ªæ±ªæ±ª.....");
 	}
 
 	@Override
-	@Seven(Property = "Ë®Â½Á½ÆÜÕ½Ê¿")
+	@Seven(Property = "æ°´é™†ä¸¤æ –æˆ˜å£«")
 	public void setProperty(String Property) {
 		this.Property = Property;
 	}
