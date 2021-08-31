@@ -16,7 +16,7 @@ public class AccountWithSecurityCheck implements Account {
         this.account = account;
     }
 
-    // 这种思路就是静态代理。
+    // 这种思路就是静态代理。 在账户操作之前进行安全检查
     @Override
     public void operation() {
         SecurityChecker.checkSecurity();

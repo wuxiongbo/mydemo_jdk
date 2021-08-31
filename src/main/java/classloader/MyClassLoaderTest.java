@@ -4,7 +4,7 @@ import java.io.FileInputStream;
 import java.lang.reflect.Method;
 
 /**
- * <p>自定义类加载器</p>
+ * <p>自定义类加载器 示例</p>
  *
  * <pre>
  * @author wuxiongbo
@@ -57,10 +57,11 @@ public class MyClassLoaderTest {
         MyClassLoader classLoader = new MyClassLoader("D:\\workspace\\wxb\\demo\\target\\classes");
 
 
-//        Class clazz = classLoader.loadClass("asm.decorator.AccountImpl$EnhancedByASM");
-        Class clazz = classLoader.loadClass("asm.decorator.AccountDemo");
-
+        // 实例化
+        Class clazz = classLoader.loadClass("classloader.AccountDemo");
         Object obj = clazz.newInstance();
+
+        // 调用方法
         Method method = clazz.getDeclaredMethod("operation", null);
         method.invoke(obj, null);
 

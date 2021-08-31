@@ -21,7 +21,7 @@ import java.lang.reflect.Method;
 public class ConcreteClassInterceptor implements MethodInterceptor {
     /**
      * @param obj         由CGLib动态生成的代理类实例
-     * @param method      上文中实体类所调用的被代理的方法引用
+     * @param method      上文中，实体类所调用的被代理的方法引用
      * @param args        参数值列表
      * @param proxy       生成的代理类对方法的代理引用
      * @return            从代理实例的方法调用返回的值

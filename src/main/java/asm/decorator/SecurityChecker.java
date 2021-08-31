@@ -1,7 +1,7 @@
 package asm.decorator;
 
 /**
- * <p>描述类的信息</p>
+ * <p> 模拟权限检查业务 </p>
  *
  * <pre>
  * @author wuxiongbo

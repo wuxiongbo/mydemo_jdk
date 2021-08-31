@@ -1,6 +1,6 @@
 package asm.decorator;
 /**
- * <p>描述类的信息</p>
+ * <p> 账户操作 </p>
  *
  * <pre>
  * @author wuxiongbo

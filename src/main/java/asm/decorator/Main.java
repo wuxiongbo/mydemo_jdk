@@ -1,9 +1,7 @@
 package asm.decorator;
 
-import java.io.*;
-
 /**
- * <p>描述类的信息</p>
+ * <p> 装饰者模式 演示静态代理 </p>
  *
  * <pre>
  * @author wuxiongbo
@@ -11,20 +9,13 @@ import java.io.*;
  * </pre>
  */
 public class Main {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
 
-        //  AccountImpl 的包装类
-//        AccountWithSecurityCheck accountWithSecurityCheck = new AccountWithSecurityCheck(new AccountImpl());
-//
-//        // 操作代理对象，对 AccountImpl 的 operation 方法进行了增强
-//        accountWithSecurityCheck.operation();
+        // AccountImpl 的包装类
+        AccountWithSecurityCheck AccountImplProxy = new AccountWithSecurityCheck(new AccountImpl());
 
-
-
-
-
-        AccountImpl account = new AccountDemo();
-        account.operation();
+        // 操作代理对象，对 AccountImpl 的 operation 方法进行了增强
+        AccountImplProxy.operation();
 
     }
 }

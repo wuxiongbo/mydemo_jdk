@@ -15,6 +15,7 @@ import java.lang.reflect.Method;
 
 public class MyInvocationHandler implements InvocationHandler {
 
+    // 保存被代理实例
     private Object object;
 
     public MyInvocationHandler(Object object){
@@ -28,17 +29,26 @@ public class MyInvocationHandler implements InvocationHandler {
 
         System.out.println("MyInvocationHandler invoke begin");
 
-        // 打印入参
+        // 打印 invoke 入参
         System.out.println("proxy: "+ proxy.getClass().getName());
         System.out.println("method: "+ method.getName());
         for(Object o : args){
             System.out.println("arg: "+ o);
         }
 
-        //通过反射调用 被代理类的方法。   $Proxy0 extends Proxy implements Person ;  object 就是这个 $Proxy0
+
+
+        //通过反射调用 被代理类的原始方法。
+        // $Proxy0 extends Proxy implements Person ;  object 就是这个 $Proxy0
+        // method 是接口的方法
+        // args 是 method 的方法参数
         method.invoke(object, args);
 
+
+
+
         System.out.println("MyInvocationHandler invoke end");
+
         return null;
     }
 
