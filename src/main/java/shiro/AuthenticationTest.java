@@ -37,46 +37,63 @@ public class AuthenticationTest {
 
         SecurityUtils.setSecurityManager(defaultSecurityManager);
 
-        //2. Subject提交认证
+        //2. 构建 Subject 用户主体
         Subject subject = SecurityUtils.getSubject();
+
+
+        //3. 构建 身份、凭证
         UsernamePasswordToken token = new UsernamePasswordToken("Fox","123456");
 
-        // 获取登录用户凭证
-        PrincipalCollection principals = subject.getPrincipals();
 
+        // 从 subject  获取登录用户身份。 （可以理解成用户名）   principal  主体、身份
+        PrincipalCollection principals = subject.getPrincipals();
+        System.out.println("登录前，从 subject 获取用户身份："+principals);
+
+
+
+        // 4. 用户主体，使用 身份、凭证  进行登录
+        System.out.println("登录");
         subject.login(token);
 
+
+
+
+        // 从 subject  获取登录用户身份。
         principals = subject.getPrincipals();
-
-        System.out.println(subject.isAuthenticated());
-
+        System.out.println("登录后，从 subject 获取用户身份："+principals.getPrimaryPrincipal());
 
 
 
+        System.out.println("登录后，查看是否认证："+subject.isAuthenticated());
+
+
+        // 角色判断
         if(subject.hasRole("admin")) {
             //有权限
-            System.out.println("operation");
+            System.out.println("拥有admin权限");
         } else {
             //无权限
-            System.out.println("无操作权限");
+            System.out.println("无admin权限");
         }
-
         if(subject.hasRole("user")) {
             //有权限
-            System.out.println("operation");
+            System.out.println("拥有user权限");
         } else {
             //无权限
-            System.out.println("no  operation");
+            System.out.println("无user权限");
         }
 
-        //3. 角色校验
+        //5. 角色校验
         subject.checkRole("admin");
-        subject.checkRoles("admin","user");
+        // 没权限，报错。
+//        subject.checkRoles("admin","user");
 
 
         //退出
         subject.logout();
-        System.out.println(subject.isAuthenticated());
+
+
+        System.out.println("退出登录，查看是否认证："+subject.isAuthenticated());
 
     }
 }

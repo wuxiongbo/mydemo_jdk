@@ -1,4 +1,4 @@
-package shiro.my_realm;
+package shiro.realm.my_realm;
 
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
@@ -15,7 +15,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * <p>描述类的信息</p>
+ * <p>自定义Realm</p>
  *
  * <pre>
  * @author wuxiongbo
@@ -26,25 +26,28 @@ public class MyRealm extends AuthorizingRealm {
 
     Map<String,String> userMap = new HashMap();
 
+    // 初始化 安全数据
     {
         userMap.put("Fox","123456");
         super.setName("myRealm");
     }
 
     /**
-     * 角色、权限
+     * 保存 真实 角色、权限
      * @param principals
      * @return
      */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
         // 1. 获取登录用户名
-        String username = (String) principals.getPrimaryPrincipal();
+        User user = (User) principals.getPrimaryPrincipal();
+        String username = user.getUsername();
+//        String username = (String) principals.getPrimaryPrincipal();
 
-        // 2. 通过登录用户名，从db或缓存获取 真实 角色、权限
-        // 从db或缓存，获取角色 roles
+        // 2. 通过登录用户名，从db或缓存获取真实的 角色、权限
+        // 从db或缓存，获取 真实角色 roles
         Set<String> roles = getRolesByUsername(username);
-        // 从db或缓存，获取权限 Permissions
+        // 从db或缓存，获取 真实权限 Permissions
         Set<String> permissions = getPermissionsByUsername(username);
 
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
@@ -54,14 +57,15 @@ public class MyRealm extends AuthorizingRealm {
     }
 
     /**
-     * 用户名、密码
-     * @param token
-     * @return
+     * 校验 用户名、密码
+     * @param token  AuthenticationToken中的身份/凭证是用户提交的数据，还没有经过认证
+     *               AuthenticationToken对象，代表了 身份(Principal) 和 凭证(Credentials)
+     * @return 认证成功,会被存储在AuthenticationInfo类
      * @throws AuthenticationException
      */
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
-        // 1. 获取登录用户名(用户登录凭证，可以是用户名，手机号，身份证，uuid或者一个类，能证明用户身份的数据都行。)
+        // 1. 获取登录用户身份(可以是用户名，手机号，身份证，uuid或者一个类。能证明用户身份的数据都行。)
         String username = (String)token.getPrincipal();
         Object password1 = token.getCredentials();
 
@@ -69,8 +73,13 @@ public class MyRealm extends AuthorizingRealm {
         String password = getPassswordByUsername(username);
 
         if(password != null){
-            SimpleAuthenticationInfo authenticationInfo =
-                    new SimpleAuthenticationInfo(username,password,"myRealm");
+            //  SimpleAuthenticationInfo(Object principal, Object credentials, String realmName)
+            SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(
+                    new User("可以使用新身份",""),
+                    // 关键是校验password
+                    password,
+                    "myRealm");
+
             return authenticationInfo;
         }
         return null;
@@ -83,17 +92,21 @@ public class MyRealm extends AuthorizingRealm {
         return userMap.get(username);
     }
     private Set<String> getPermissionsByUsername(String username) {
+
         //模拟从缓存或db中，通过username获取Permissions
         Set<String> permissions = new HashSet<>();
         permissions.add("user:delete");
         permissions.add("user:add");
+
         return permissions;
     }
     private Set<String> getRolesByUsername(String username) {
+
         //模拟从缓存或db中，通过username获取roles
         Set<String> roles = new HashSet<>();
         roles.add("admin");
         roles.add("user");
+
         return roles;
     }
 }

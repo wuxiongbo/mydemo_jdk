@@ -71,23 +71,40 @@ public class MergeList {
             System.out.println(s);
         }
 
-        s1 =       "a,a,a,a,a,";
-        s2 = "d,b,d,c,r";
+        s1 =       "c,a,a,a,a,e";
+        s2 = "d,b,d,c,a";
+//        s2 =       "c,a,a,a,a,e";
+//        s1 = "d,b,d,c,a";
         a1 = s1.split(",");
         a2 = s2.split(",");
         list = new ArrayList(Arrays.asList(a1));
+        // 不能用返回值来判断两个集合中是否有交集!!!
         a = list.retainAll(Arrays.asList(a2));
         System.out.println(a);
         for(String s : list){
             System.out.println(s);
         }
 
+
+        s1 = "c,a,a,a,a";
+        s2 = "c,a";
+        a1 = s1.split(",");
+        a2 = s2.split(",");
+        list = new ArrayList(Arrays.asList(a1));
+        // 不能用返回值来判断两个集合中是否有交集!!!
+        a = list.retainAll(Arrays.asList(a2));
+        System.out.println(a);
+        for(String s : list){
+            System.out.println(s);
+        }
+
+
         //===================集合交集  方法二 ========================
 
         List<String> list1 = new ArrayList(Arrays.asList(a1));
         List<String> list2 = new ArrayList(Arrays.asList(a2));
 
-        List<String> collect1 = list1.stream().filter(num -> list2.contains(num))
+        List<String> collect1 = list1.stream().distinct().filter(num -> list2.contains(num))
                 .collect(Collectors.toList());
 
         System.out.println("交集");
