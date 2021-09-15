@@ -1,11 +1,22 @@
 package reflect.jdk_reflect;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.asm.ClassReader;
+import org.springframework.asm.ClassVisitor;
+import org.springframework.core.LocalVariableTableParameterNameDiscoverer;
+import org.springframework.util.ClassUtils;
 import reflect.po.SampleClass;
 import reflect.po.UserInfo;
 
 import java.beans.PropertyDescriptor;
+import java.io.IOException;
+import java.io.InputStream;
+import java.lang.reflect.Executable;
 import java.lang.reflect.Method;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
+import static reflect.jdk_reflect.MyReflectUtil.*;
 
 //https://www.yiibai.com/javareflect/javareflect_method_togenericstring.html
 //https://blog.csdn.net/weixin_42069143/article/details/82119724
@@ -13,6 +24,8 @@ import java.lang.reflect.Method;
 
 /**
  * <p>  PropertyDescriptor 属性描述符</p>
+ *
+ *
  *
  * <pre>
  * @author wuxiongbo
@@ -35,51 +48,61 @@ public class PropertyDescriptorDemo {
         }
     }
 
+    /**
+     * 通过反射的方式，读取或写入 实例对象的属性值
+     * @throws Exception
+     */
     @Test
     void test2() throws Exception {
         UserInfo user= new UserInfo();
 
-
         // 写入属性值
         setProperty(user,"userName");
-
         System.out.println("set userName:" + user.getUserName());
-
 
         // 读取属性值
         Object rtValue = getProperty(user,"userName");
-
         System.out.println("get userName:" + rtValue.toString());
     }
 
-    /**
-     * 通过属性名，设置bean的属性值
-     */
-    public static void setProperty(Object target, String propertyName) throws Exception {
-        // 获取bean的某个属性的描述符
-//        PropertyDescriptor propDesc = new PropertyDescriptor(propertyName, UserInfo.class);
-        PropertyDescriptor propDesc = new PropertyDescriptor(propertyName, target.getClass());
 
-        // 获得用于写入属性值的方法
-        Method writeMethod = propDesc.getWriteMethod();
-        // 写入属性值
-        writeMethod.invoke(target, "zhangsan");
+    /**
+     * 反射获取参数名称
+     * @throws NoSuchMethodException
+     */
+    @Test
+    void test3() throws NoSuchMethodException {
+        Method setUserName = UserInfo.class.getMethod("setUserName",String.class);
+
+        Executable executable = setUserName;
+        Class<?> declaringClass = executable.getDeclaringClass();
+        String classFileName = ClassUtils.getClassFileName(declaringClass);
+        InputStream is = declaringClass.getResourceAsStream(classFileName);
+
+        MyReflectUtil util = new MyReflectUtil();
+        try {
+            ClassReader classReader = new ClassReader(is);
+            Map<Executable, String[]> map = new ConcurrentHashMap<>(32);
+            classReader.accept(
+                    (ClassVisitor)util.getStaticInner(LocalVariableTableParameterNameDiscoverer.class,"ParameterNameDiscoveringVisitor",declaringClass,map),
+                    0);
+
+            System.out.println(map);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+
+
     }
 
-    /**
-     * 通过属性名，获取bean的属性值
-     */
-    public static Object getProperty(Object target, String propertyName) throws Exception {
-        // 获取Bean的某个属性的描述符
-//        PropertyDescriptor propertyDescriptor = new PropertyDescriptor(propertyName, UserInfo.class);
-        PropertyDescriptor propertyDescriptor = new PropertyDescriptor(propertyName, target.getClass());
 
-        // 获得用于读取属性值的方法
-        Method readMethod = propertyDescriptor.getReadMethod();
-        // 读取属性值 并返回
-        Object rtValue = readMethod.invoke(target);
-        return rtValue;
+    @Test
+    void test4() throws NoSuchMethodException {
 
+        Object user= new UserInfo();
+        Class<?> aClass = user.getClass();
+        System.out.println(aClass);
     }
 
 }

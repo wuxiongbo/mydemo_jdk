@@ -1,5 +1,6 @@
 package reflect.spring.reflection_utils;
 
+
 import org.springframework.util.ReflectionUtils;
 import reflect.po.UserInfo;
 
@@ -15,12 +16,12 @@ import java.lang.reflect.Field;
  */
 public class SpringDemo {
     public static void main(String[] args){
-        // 反射获取属性
+        // 反射 获取属性
         Field userNameField = ReflectionUtils.findField(UserInfo.class, "userName", String.class);
         userNameField.setAccessible(true);
-
         System.out.println(userNameField);
 
+        // 实例
         UserInfo user = new UserInfo();
         user.setUserId(111L);
         user.setUserName("zhangsan");
@@ -29,7 +30,7 @@ public class SpringDemo {
 
         // 获取属性的值
         String userName= (String)ReflectionUtils.getField(userNameField, user);
-
         System.out.println(userName);
+
     }
 }
