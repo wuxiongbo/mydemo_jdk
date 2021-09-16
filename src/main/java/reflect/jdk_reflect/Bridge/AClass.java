@@ -30,6 +30,9 @@ package reflect.jdk_reflect.Bridge;
  * }
  *
  *
+ * method(Ljava/lang/String;)V
+ * method(Ljava/lang/Object;)V
+ *
  * <pre>
  * @author wuxiongbo
  * @date 2021/9/15
