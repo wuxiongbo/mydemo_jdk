@@ -91,12 +91,6 @@ public class MyReflectUtil {
      */
     @SuppressWarnings({"rawtypes", "unchecked"})
     public Object getStaticInner(Class outClzz,String innerName,Object ... args) throws Exception {
-        //获取外部类
-
-        //获取外部类默认无参构造方法，实例一个外部类对象
-        Constructor con = outClzz.getDeclaredConstructor();
-
-        Object outObj = con.newInstance();
 
         //获取外部类内的所有内部类
         Class innerClazz[] = outClzz.getDeclaredClasses();
@@ -169,7 +163,6 @@ public class MyReflectUtil {
         // 读取属性值 并返回
         Object rtValue = readMethod.invoke(target);
         return rtValue;
-
     }
 
 

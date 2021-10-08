@@ -1,7 +1,4 @@
-package reflect.proxy.superclass;
-
-import org.junit.jupiter.api.Test;
-import reflect.proxy.cglib.Main;
+package reflect.jdk_reflect.superclass;
 
 import java.io.File;
 import java.net.URL;
@@ -9,49 +6,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * <p>查找父类</p>
+ * <p>描述类的信息</p>
  *
  * <pre>
  * @author wuxiongbo
- * @date 2021/6/17
+ * @date 2021/10/8
  * </pre>
  */
-public class Demo {
-    @Test
-    void test1(){
-        String a  = "121";
-        List<Class<?>> clazzList = getSuperClass(a.getClass());
-        for (Class<?> clazz : clazzList) {
-            System.out.println(clazz.toGenericString());
-        }
-    }
-
-    @Test
-    void test2(){
-        try {
-            System.out.println("获取路径下的所有类的文件名");
-            for(Class<?> c: getAllClass(Main.class)){
-                System.out.println(c.getName());
-            }
-            //System.out.println("子类");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Test
-    void test3(){
-        String a = "";
-        Class<? extends String> aClass = a.getClass();
-
-        //  aClass  是 CharSequence的子类 则正常运行。 否则抛异常
-        Class<? extends CharSequence> aClass1 = aClass.asSubclass(CharSequence.class);
-
-        //  aClass  和 aClass1  是同一个对象
-        System.out.println(System.identityHashCode(aClass));
-        System.out.println(System.identityHashCode(aClass1));
-    }
-
+public class ClassUtil {
     /**
      * 获取这个类的所有父类
      * @param clazz
@@ -131,6 +93,5 @@ public class Demo {
         }
         return clazzs;
     }
-
 
 }

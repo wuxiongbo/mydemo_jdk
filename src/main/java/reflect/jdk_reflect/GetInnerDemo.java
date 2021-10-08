@@ -1,6 +1,5 @@
 package reflect.jdk_reflect;
 
-
 import java.lang.reflect.Constructor;
 
 /**
@@ -16,15 +15,18 @@ import java.lang.reflect.Constructor;
 public class GetInnerDemo {
     @SuppressWarnings({"rawtypes", "unchecked"})
     public static void main(String[] args) throws Exception {
-//        Class<A> aClass = A.class;
-//        Constructor<A> constructor = aClass.getConstructor(Class.class);
-//        A a = constructor.newInstance(String.class);
+        // 示例：构建普通类
+        Class<A> aClass = A.class;
+        Constructor<A> constructor = aClass.getConstructor(Class.class);
+        A a = constructor.newInstance(String.class);
 
-        //获取外部类
+
+
+        // 示例：构建静态内部类
+        // 外部类的class对象
         Class<Out> clzz = Out.class;
-
+        // 获取私有化的静态内部类
         MyReflectUtil util = new MyReflectUtil();
-
         Class<String> stringClass = String.class;
         Object inner1 = util.getStaticInner(clzz, "Inner",stringClass);
         System.out.println(inner1);
@@ -42,6 +44,10 @@ public class GetInnerDemo {
 }
 
 
+
+/**
+ * 静态内部类
+ */
 class Out {
     //目标获取Inner对象
     private static class Inner {
@@ -94,10 +100,18 @@ class Out {
     }
 }
 
+/**
+ * 构造方法 中有 class 类型参数
+ *
+ * 普通内部类
+ */
 class A{
     private Class<?> clazz;
 
     public A(Class<?> clazz) {
         this.clazz = clazz;
+    }
+
+    private class B{
     }
 }

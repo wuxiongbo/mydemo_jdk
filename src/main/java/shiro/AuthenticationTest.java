@@ -45,7 +45,7 @@ public class AuthenticationTest {
         UsernamePasswordToken token = new UsernamePasswordToken("Fox","123456");
 
 
-        // 从 subject  获取登录用户身份。 （可以理解成用户名）   principal  主体、身份
+        // 从 subject主体  获取登录用户身份。 （可以理解成用户名）   principal  主体、身份
         PrincipalCollection principals = subject.getPrincipals();
         System.out.println("登录前，从 subject 获取用户身份："+principals);
 

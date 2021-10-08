@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Executable;
 import java.lang.reflect.Method;
+import java.util.Arrays;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -77,17 +78,20 @@ public class PropertyDescriptorDemo {
         Executable executable = setUserName;
         Class<?> declaringClass = executable.getDeclaringClass();
         String classFileName = ClassUtils.getClassFileName(declaringClass);
-        InputStream is = declaringClass.getResourceAsStream(classFileName);
 
         MyReflectUtil util = new MyReflectUtil();
-        try {
+
+        try (InputStream is = declaringClass.getResourceAsStream(classFileName)){
+
             ClassReader classReader = new ClassReader(is);
             Map<Executable, String[]> map = new ConcurrentHashMap<>(32);
             classReader.accept(
                     (ClassVisitor)util.getStaticInner(LocalVariableTableParameterNameDiscoverer.class,"ParameterNameDiscoveringVisitor",declaringClass,map),
                     0);
 
-            System.out.println(map);
+            String[] strings = map.get(executable);
+            System.out.println(Arrays.toString(strings));
+
         } catch (Exception ex) {
             ex.printStackTrace();
         }
