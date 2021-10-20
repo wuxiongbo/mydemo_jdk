@@ -77,19 +77,25 @@ public class PropertyDescriptorDemo {
 
         Executable executable = setUserName;
         Class<?> declaringClass = executable.getDeclaringClass();
-        String classFileName = ClassUtils.getClassFileName(declaringClass);
+        String classFileName = ClassUtils.getClassFileName(declaringClass);  // spring
 
         MyReflectUtil util = new MyReflectUtil();
 
         try (InputStream is = declaringClass.getResourceAsStream(classFileName)){
-
-            ClassReader classReader = new ClassReader(is);
             Map<Executable, String[]> map = new ConcurrentHashMap<>(32);
+
+            ClassReader classReader = new ClassReader(is);  // spring
             classReader.accept(
-                    (ClassVisitor)util.getStaticInner(LocalVariableTableParameterNameDiscoverer.class,"ParameterNameDiscoveringVisitor",declaringClass,map),
+                    // 实例化私有静态内部类
+                    (ClassVisitor)util.getStaticInner(
+                            LocalVariableTableParameterNameDiscoverer.class,
+                            "ParameterNameDiscoveringVisitor",
+                            declaringClass,map),
                     0);
 
+
             String[] strings = map.get(executable);
+
             System.out.println(Arrays.toString(strings));
 
         } catch (Exception ex) {

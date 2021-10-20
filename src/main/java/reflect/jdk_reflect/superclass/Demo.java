@@ -5,6 +5,7 @@ import reflect.proxy.cglib.Main;
 import temp.pk.ImportDemo;
 
 import java.io.File;
+import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -61,17 +62,44 @@ public class Demo {
     }
 
 
+
     @Test
     void test4(){
-        String filepath = System.getProperty("user.dir");
-        System.out.println(filepath);
+//        String filepath = System.getProperty("user.dir");
+//        System.out.println(filepath);
+
+        try {
+            Class<?> tempDemp = Class.forName("TempDemp");
+            Object o = tempDemp.getConstructor().newInstance();
+
+
+            System.out.println(o);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+
     }
 
 
 
 
 
+    @Test
+    void test5(){
+//        Integer a = null;
+//        System.out.println(a ==1);
+        String s = "user/signUserRecord";
+        System.out.println(s.contains("/signUserRecord"));
 
+    }
 
 
 

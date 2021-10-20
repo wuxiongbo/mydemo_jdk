@@ -1,5 +1,7 @@
 package reflect.jdk_reflect.Bridge;
 
+import reflect.jdk_reflect.Bridge.dependence.AClass;
+
 import java.lang.reflect.Method;
 
 /**

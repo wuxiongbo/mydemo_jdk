@@ -83,9 +83,9 @@ public class MyReflectUtil {
 
     /**
      * 实例化 私有静态内部类
-     * @param outClzz
-     * @param innerName
-     * @param args
+     * @param outClzz    外部类的class
+     * @param innerName  内部类名称
+     * @param args       构造方法参数
      * @return
      * @throws Exception
      */

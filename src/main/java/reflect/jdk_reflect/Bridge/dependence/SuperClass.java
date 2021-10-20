@@ -1,4 +1,4 @@
-package reflect.jdk_reflect.Bridge;
+package reflect.jdk_reflect.Bridge.dependence;
 
 /**
  * <p>描述类的信息</p>

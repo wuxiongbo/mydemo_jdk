@@ -1,4 +1,4 @@
-package reflect.jdk_reflect.Bridge;
+package reflect.jdk_reflect.Bridge.dependence;
 
 /**
  * <p>桥接方法</p>

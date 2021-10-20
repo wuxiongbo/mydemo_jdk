@@ -8,6 +8,6 @@
  */
 public class TempDemp {
     public static void test(){
-
+        System.out.println("test");
     }
 }
