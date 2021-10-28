@@ -21,6 +21,9 @@ package reflect.jdk_reflect.Bridge.dependence;
  *
  * 反编译AClass 可以看到，多出了一个方法，这个方法就是桥接方法。
  *
+ * 也就是说，JVM 在编译时，为我们隐式地创建了 桥接方法。
+ *
+ * javap 指令
  * D:\soft\tools\jdk-17\bin>javap -p AClass.class
  * Compiled from "AClass.java"
  * public class reflect.jdk_reflect.Bridge.AClass implements reflect.jdk_reflect.Bridge.SuperClass<java.lang.String> {

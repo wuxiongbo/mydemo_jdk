@@ -41,7 +41,7 @@ public class AuthenticationTest {
         Subject subject = SecurityUtils.getSubject();
 
 
-        //3. 构建 身份、凭证
+        //3. 构建 身份、凭证  用于登录
         UsernamePasswordToken token = new UsernamePasswordToken("Fox","123456");
 
 
@@ -51,10 +51,9 @@ public class AuthenticationTest {
 
 
 
-        // 4. 用户主体，使用 身份、凭证  进行登录
+        // 4. 用户主体  使用 身份、凭证  进行登录
         System.out.println("登录");
         subject.login(token);
-
 
 
 
