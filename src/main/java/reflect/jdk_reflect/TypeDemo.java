@@ -15,8 +15,9 @@ import java.util.ArrayList;
  */
 public class TypeDemo {
     public static void main(String[] args){
-
+        // 注意，创建的是，加了 {} 的匿名类
         ParameterizedTypeReference parameterizedTypeReference = new ParameterizedTypeReference<ArrayList<Integer>>(){};
+
         Type type = parameterizedTypeReference.getType();
         // java.util.ArrayList<java.lang.Integer>
 
