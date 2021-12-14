@@ -58,7 +58,10 @@ public class MyReflectUtil {
                             i++;
                         }
                     }
-                    types[0]=outClzz; //(普通内部类 的构造方法有隐藏参数，参数列表的第一个参数位置，这个隐藏参数是 外部类的实例)
+
+                    // 普通内部类 的构造方法有个隐藏参数，在参数列表的第一个参数位置，这个隐藏参数是 外部类的实例
+                    // 静态内部类 则没有这个隐藏参数。
+                    types[0]=outClzz;
 
                     //根据内部类的特性，需要由外部类来反射获取内部类的构造方法（这里获取的是内部类的默认构造方法）
                     Constructor constructor = inner.getDeclaredConstructor(types);
@@ -66,11 +69,17 @@ public class MyReflectUtil {
                     constructor.setAccessible(true);
 
                     Object[] params = new Object[args.length+1];
+                    // 源数组             Object src,
+                    // 源数组的起始位置    int  srcPos,
+                    // 目标数组           Object dest,
+                    // 目标数组的起始位置  int destPos,
+                    // 拷贝的长度         int length
                     System.arraycopy(args,0,params,1,args.length);
                     params[0] = outObj;
 
                     //用 内部类的构造方法对象 来反射获取内部类的实例化对象(普通内部类 需要传入外部类的实例，它是构造方法的隐藏参数)
                     Object innerObj = constructor.newInstance(params);
+
                     return innerObj;
                 }
 

@@ -25,10 +25,9 @@ public class GetInnerDemo {
         // 示例：构建静态内部类
         // 外部类的class对象
         Class<Out> clzz = Out.class;
-        // 获取私有化的静态内部类
+        // 获取  私有化的静态 内部类
         MyReflectUtil util = new MyReflectUtil();
-        Class<String> stringClass = String.class;
-        Object inner1 = util.getStaticInner(clzz, "Inner",stringClass);
+        Object inner1 = util.getStaticInner(clzz, "Inner",String.class);
         System.out.println(inner1);
 
 //        Object inner = util.getNormalInner(clzz, "Inner","42342323",21313);

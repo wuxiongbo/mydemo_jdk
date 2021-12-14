@@ -23,28 +23,19 @@ import java.lang.reflect.UndeclaredThrowableException;
  * </pre>
  */
 public final class $Proxy1 extends Proxy implements Person {
-    private static Method m1;
+    // 接口的方法对象
     private static Method m4;
     private static Method m3;
+
     private static Method m2;
+    private static Method m1;
     private static Method m0;
 
-    // 2. 保存委托类 InvocationHandler h。
+    // 2. 保存委托类 InvocationHandler h。  保存为  Proxy 的成员变量
     public $Proxy1(InvocationHandler var1)  {
         super(var1);
     }
 
-    @Override
-    public final boolean equals(Object var1)  {
-        try {
-            // 有返回值。 调用被代理类的方法时，都会委托给这个委托类的invoke方法
-            return (Boolean)super.h.invoke(this, m1, new Object[]{var1});
-        } catch (RuntimeException | Error var3) {
-            throw var3;
-        } catch (Throwable var4) {
-            throw new UndeclaredThrowableException(var4);
-        }
-    }
 
     @Override
     public final void sayGoodBye(boolean var1, double var2)  {
@@ -70,6 +61,7 @@ public final class $Proxy1 extends Proxy implements Person {
         }
     }
 
+
     @Override
     public final String toString()  {
         try {
@@ -81,7 +73,17 @@ public final class $Proxy1 extends Proxy implements Person {
             throw new UndeclaredThrowableException(var3);
         }
     }
-
+    @Override
+    public final boolean equals(Object var1)  {
+        try {
+            // 有返回值。 调用被代理类的方法时，都会委托给这个委托类的invoke方法
+            return (Boolean)super.h.invoke(this, m1, new Object[]{var1});
+        } catch (RuntimeException | Error var3) {
+            throw var3;
+        } catch (Throwable var4) {
+            throw new UndeclaredThrowableException(var4);
+        }
+    }
     @Override
     public final int hashCode()  {
         try {
@@ -94,14 +96,17 @@ public final class $Proxy1 extends Proxy implements Person {
         }
     }
 
-    // 1.反射获取方法对象
+    // 1.反射获取 接口的方法对象
     static {
         try {
-            m1 = Class.forName("java.lang.Object").getMethod("equals", Class.forName("java.lang.Object"));
-            m4 = Class.forName("proxy.Person").getMethod("sayGoodBye", Boolean.TYPE, Double.TYPE);
-            m3 = Class.forName("proxy.Person").getMethod("sayHello", Class.forName("java.lang.String"), Integer.TYPE);
+
+            m4 = Class.forName("jdk_proxy.bean.Person").getMethod("sayGoodBye", Boolean.TYPE, Double.TYPE);
+            m3 = Class.forName("jdk_proxy.bean.Person").getMethod("sayHello", Class.forName("java.lang.String"), Integer.TYPE);
+
             m2 = Class.forName("java.lang.Object").getMethod("toString");
+            m1 = Class.forName("java.lang.Object").getMethod("equals", Class.forName("java.lang.Object"));
             m0 = Class.forName("java.lang.Object").getMethod("hashCode");
+
         } catch (NoSuchMethodException var2) {
             throw new NoSuchMethodError(var2.getMessage());
         } catch (ClassNotFoundException var3) {

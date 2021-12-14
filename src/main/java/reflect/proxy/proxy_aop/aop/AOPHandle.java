@@ -8,10 +8,10 @@ import java.lang.reflect.Method;
  */
 public class AOPHandle implements InvocationHandler {
 
-	// 增强方法
+	// 保存的 增强实现
 	private AOPMethod method;
 
-	// 保存原始对象
+	// 保存的 原始对象
 	private Object o;
 
 	public AOPHandle(Object o, AOPMethod method) {
@@ -19,26 +19,30 @@ public class AOPHandle implements InvocationHandler {
 		this.method=method;
 	}
 	/**
-	 * 这个方法会自动调用,
-	 * Java动态代理机制会传入下面几个参数
-	 * @param  proxy	Object  代理对象的接口,不同于对象
-	 * @param  method	Method  被调用方法
-	 * @param  args    Object[] 方法参数
-	 * 不能使用invoke时使用proxy作为反射参数时,因为代理对象的接口,不同于对象
-	 * 这种代理机制是面向接口，而不是面向类的
+	 * 对原始方法进行增强。
+	 * @param  proxy	Object   生成的代理对象。  代理对象 与 原始对象  实现了相同的接口。 ‘代理对象’ 内部保存了 ‘原始对象’
+	 * @param  method	Method   接口的方法对象
+	 * @param  args     Object[] 调用接口方法时，传的参数值
 	 **/
 	@Override
 	public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+		// 返回值
 		Object ret=null;
 
-		//修改的地方在这里哦
+
+		//====增强逻辑在这里====
 		this.method.before(proxy, method, args);
 
-		// 执行原始方法
+
+
+		// 执行 原始类o 的目标方法
 		ret = method.invoke(o, args);
 
-		//修改的地方在这里哦
+
+
+		//====增强逻辑在这里====
 		this.method.after(proxy, method, args);
+
 
 		return ret;
 	}

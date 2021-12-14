@@ -6,8 +6,6 @@ import java.util.ArrayList;
 /**
  * <p> Java中获取泛型的Class对象  工具类的使用 </p>
  *
- *
- *
  * <pre>
  * @author wuxiongbo
  * @date 2021/10/28
