@@ -47,32 +47,33 @@ public class MainClass {
 
         //创建类A1和B1的实例
         A a = new A();
-        A b_a = new B();
+        A b_up_to_a = new B();
 
-        //使用cast(b)方法将对象b转换为B类型
-        B b = B.class.cast(b_a);
+        //使用cast(b_up_to_a)方法将 对象b_up_to_a 向下转型为B类型
+        Class<B> bClass = B.class;
+        B b = bClass.cast(b_up_to_a);
 
         //显示类别
         System.out.println("a.getClass(): " + a.getClass());
-        System.out.println("ba.getClass(): " + b_a.getClass());
+        System.out.println("ba.getClass(): " + b_up_to_a.getClass());
         System.out.println("b.getClass(): " + b.getClass());
 
 
         // cast 原理。 isInstance
 
         // isInstance是Class类的一个方法
-        // ba 是不是 B 的实例。(重要，多态向下转型)
-        System.out.println(B.class.isInstance(b_a));
-        // ba 是不是 A 的实例
-        System.out.println(A.class.isInstance(b_a));
-        // ba 是不是 IA 的实例
-        System.out.println(IA.class.isInstance(b_a));
+        // b_up_to_a 是不是 B类型。(重要，多态向下转型)
+        System.out.println(B.class.isInstance(b_up_to_a));
+        // b_up_to_a 是不是 A类型
+        System.out.println(A.class.isInstance(b_up_to_a));
+        // b_up_to_a 是不是 IA类型
+        System.out.println(IA.class.isInstance(b_up_to_a));
 
         // instanceof 是一个操作符
         // ba 是不是 B 类型
-        System.out.println(b_a instanceof B);
+        System.out.println(b_up_to_a instanceof B);
         // ba 是不是 A 类型
-        System.out.println(b_a instanceof A);
+        System.out.println(b_up_to_a instanceof A);
 
 
     }

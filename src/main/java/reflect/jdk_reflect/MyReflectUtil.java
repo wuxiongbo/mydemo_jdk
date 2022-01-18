@@ -69,12 +69,18 @@ public class MyReflectUtil {
                     constructor.setAccessible(true);
 
                     Object[] params = new Object[args.length+1];
+
+
                     // 源数组             Object src,
                     // 源数组的起始位置    int  srcPos,
+
                     // 目标数组           Object dest,
                     // 目标数组的起始位置  int destPos,
+
                     // 拷贝的长度         int length
                     System.arraycopy(args,0,params,1,args.length);
+
+
                     params[0] = outObj;
 
                     //用 内部类的构造方法对象 来反射获取内部类的实例化对象(普通内部类 需要传入外部类的实例，它是构造方法的隐藏参数)
