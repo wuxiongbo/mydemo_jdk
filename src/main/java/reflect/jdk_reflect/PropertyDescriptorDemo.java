@@ -46,8 +46,50 @@ public class PropertyDescriptorDemo {
                 System.out.println(parameterType.getName());
             }
         }
+
+        try{
+            String p = "long";
+            Class<?> aLong = getType(p);
+            if (p!=null && aLong==null){
+                aLong = Class.forName(p);
+            }
+
+            Class<Long> longClass = long.class;
+            System.out.println("===="+ aLong);
+            System.out.println(longClass);
+        }catch (Exception e){
+            System.out.println(e);
+        }
+
     }
 
+    /**
+     * 基本数据类型 不能用 Class.forName;  所以，需要显示创建。
+     * @param p
+     * @return
+     */
+    private Class<?> getType(String p){
+        switch (p){
+            case "byte":
+                return byte.class;
+            case "short":
+                return short.class;
+            case "int":
+                return int.class;
+            case "long":
+                return long.class;
+            case "float":
+                return float.class;
+            case "double":
+                return double.class;
+            case "boolean":
+                return boolean.class;
+            case "char":
+                return char.class;
+            default:
+                return null;
+        }
+    }
 
 
     @Test
