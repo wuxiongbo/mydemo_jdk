@@ -26,15 +26,28 @@ import static reflect.jdk_reflect.MyReflectUtil.*;
 /**
  * <p>  PropertyDescriptor 属性描述符</p>
  *
- *
- *
  * <pre>
  * @author wuxiongbo
  * @date 2021/6/17
  * </pre>
  */
-//@Slf4j
 public class PropertyDescriptorDemo {
+
+
+    @Test
+    /**
+     * 获取并打印 SampleClass类拥有的所有方法的参数类型。
+     */
+    void test11(){
+        Method[] methods = SampleClass.class.getMethods();
+        for (int i = 0; i < methods.length; i++) {
+            Class<?>[] parameterTypes = methods[i].getParameterTypes();
+            for (Class<?> parameterType : parameterTypes) {
+                System.out.println(parameterType.getName());
+            }
+        }
+    }
+
 
 
     @Test
@@ -48,6 +61,24 @@ public class PropertyDescriptorDemo {
             System.out.println(methods[i].toGenericString());
         }
     }
+    /*
+    打印输出：
+    SampleClass
+        public boolean reflect.po.SampleClass.equals(java.lang.Object)
+        public java.lang.String reflect.po.SampleClass.toString()
+        public int reflect.po.SampleClass.hashCode()
+        public void reflect.po.SampleClass.setSampleField(java.lang.String)
+        public java.lang.String reflect.po.SampleClass.getSampleField()
+
+    Object
+        public final void java.lang.Object.wait() throws java.lang.InterruptedException
+        public final void java.lang.Object.wait(long,int) throws java.lang.InterruptedException
+        public final native void java.lang.Object.wait(long) throws java.lang.InterruptedException
+        public final native java.lang.Class<?> java.lang.Object.getClass()
+        public final native void java.lang.Object.notify()
+        public final native void java.lang.Object.notifyAll()
+     */
+
 
     /**
      * 通过反射的方式，读取或写入 实例对象的属性值

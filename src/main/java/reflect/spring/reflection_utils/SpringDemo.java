@@ -16,7 +16,7 @@ import java.lang.reflect.Field;
  */
 public class SpringDemo {
     public static void main(String[] args){
-        // 反射 获取属性
+        // 反射 获取 属性对象
         Field userNameField = ReflectionUtils.findField(UserInfo.class, "userName", String.class);
         userNameField.setAccessible(true);
         System.out.println(userNameField);
@@ -29,8 +29,8 @@ public class SpringDemo {
         user.setEmailAddress("1111@ww.com");
 
         // 获取属性的值
-        String userName= (String)ReflectionUtils.getField(userNameField, user);
-        System.out.println(userName);
+        Object fieldValue= ReflectionUtils.getField(userNameField, user);
+        System.out.println(fieldValue);
 
     }
 }

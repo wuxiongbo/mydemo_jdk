@@ -1,4 +1,4 @@
-package spring_utils;
+package spring_utils.bean_utils;
 
 import lombok.Data;
 
