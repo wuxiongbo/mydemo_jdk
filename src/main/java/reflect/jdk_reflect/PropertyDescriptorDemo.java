@@ -22,7 +22,6 @@ import static reflect.jdk_reflect.MyReflectUtil.*;
 //https://www.yiibai.com/javareflect/javareflect_method_togenericstring.html
 //https://blog.csdn.net/weixin_42069143/article/details/82119724
 //https://blog.csdn.net/zhuqiuhui/article/details/78542049
-
 /**
  * <p>  PropertyDescriptor 属性描述符</p>
  *
@@ -101,6 +100,9 @@ public class PropertyDescriptorDemo {
 
         for (int i = 0; i < methods.length; i++) {
             System.out.println(methods[i].toGenericString());
+
+//            System.out.println(methods[i].getName());   // 短名
+//            System.out.println(methods[i].toString());  // 结果同 toGenericString
         }
     }
     /*
