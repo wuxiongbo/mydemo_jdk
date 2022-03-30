@@ -1,9 +1,16 @@
 package asm.aspectj;
 
+/**
+ * AspectJ 的 特定语言
+ * 需要使用 ajc编译器 来进行编译
+ *
+ * 此类的目的是，定义切面 {@link asm.aspectj.Account}
+ */
 public aspect AccountAspect {
 
     pointcut callPay(int amount, Account account):
-            call(boolean com.javadoop.aspectjlearning.model.Account.pay(int)) && args(amount) && target(account);
+            call(boolean asm.aspectj.Account.pay(int)) && args(amount) && target(account);
+
 
     before(int amount, Account account): callPay(amount, account) {
         System.out.println("[AccountAspect]付款前总金额: " + account.balance);

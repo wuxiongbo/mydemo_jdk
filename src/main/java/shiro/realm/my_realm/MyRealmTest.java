@@ -17,7 +17,7 @@ import org.junit.jupiter.api.Test;
  * </pre>
  */
 public class MyRealmTest {
-    Realm realm ;
+    private Realm realm ;
 
     @BeforeEach
     public void addUser(){

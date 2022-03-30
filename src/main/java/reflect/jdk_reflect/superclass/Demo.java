@@ -1,6 +1,8 @@
 package reflect.jdk_reflect.superclass;
 
 import org.junit.jupiter.api.Test;
+import reflect.jdk_reflect.Bridge.dependence.AClass;
+import reflect.jdk_reflect.Bridge.dependence.SuperClass;
 import reflect.proxy.cglib.Main;
 import temp.pk.ImportDemo;
 
@@ -92,6 +94,15 @@ public class Demo {
 
     }
 
+
+    @Test
+    void test6(){
+        boolean assignable1 = AClass.class.isAssignableFrom(SuperClass.class);
+        System.out.println("AClass 是 SuperClass 的父类："+ assignable1);
+
+        boolean assignable2 = SuperClass.class.isAssignableFrom(AClass.class);
+        System.out.println("SuperClass 是 AClass 的父类："+ assignable2);
+    }
 
 
 }

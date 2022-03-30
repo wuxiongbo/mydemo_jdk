@@ -1,9 +1,9 @@
 package reflect.proxy.cglib;
 
 /**
- * <p>将被代理的实体类，未实现任何接口</p>
+ * <p> 被代理类</p>
  *
- * 该类 没有实现任何接口、包含两个方法
+ * 该类 没有实现任何接口、仅包含两个方法
  *
  * <pre>
  * @author wuxiongbo

@@ -24,7 +24,7 @@ import java.util.Set;
  */
 public class MyRealm extends AuthorizingRealm {
 
-    Map<String,String> userMap = new HashMap();
+    private Map<String,String> userMap = new HashMap<>();
 
     // 初始化 安全数据
     {
@@ -33,6 +33,7 @@ public class MyRealm extends AuthorizingRealm {
     }
 
     /**
+     * 鉴权
      * 2. 保存 真实 角色、权限
      * @param principals
      * @return
@@ -43,8 +44,8 @@ public class MyRealm extends AuthorizingRealm {
         User user = (User) principals.getPrimaryPrincipal();
         String username = user.getUsername();
         String pwd = user.getPwd();
-        System.out.println("验证："+username);
-        System.out.println("验证："+pwd);
+        System.out.println("实验："+username);
+        System.out.println("实验："+pwd);
 
 //        String username = (String) principals.getPrimaryPrincipal();
 
@@ -61,6 +62,7 @@ public class MyRealm extends AuthorizingRealm {
     }
 
     /**
+     * 认证
      * 1. 校验 用户名、密码
      * @param token  AuthenticationToken中的 身份/凭证 是 用户提交 的数据，还没有经过认证
      *               AuthenticationToken对象，代表了 身份(Principal) 和 凭证(Credentials)
@@ -69,12 +71,14 @@ public class MyRealm extends AuthorizingRealm {
      */
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
-        // 1. 获取登录用户身份(可以是用户名，手机号，身份证，uuid或者一个类。能证明用户身份的数据都行。)
+        // 1. 获取登录用户身份
+        //    (可以是  用户名，手机号，身份证，uuid 或者 一个类。
+        //     能证明用户身份的数据都行。)
         String usernameFromC = (String)token.getPrincipal();
         Object passwordFromC = token.getCredentials(); // 登录密码
 
         // 2. 通过登录用户名，从db获取真实密码
-        String passwordFromDb = getPassswordByUsername(usernameFromC); // 真实密码
+        String passwordFromDb = getPassswordByUsername(usernameFromC); // 获取到真实密码
 
         if(passwordFromDb != null){
             //  SimpleAuthenticationInfo(Object principal, Object credentials, String realmName)
@@ -86,7 +90,7 @@ public class MyRealm extends AuthorizingRealm {
                     new User("可以使用新身份","可以使用新的密码"),
                     // 关键是校验 password  是否匹配
                     passwordFromDb,
-                    // 自定义realm 的名称
+                    // 当前 自定义realm 的名称
                     realmName);
 
             return authenticationInfo;
