@@ -16,7 +16,7 @@ import java.lang.reflect.Method;
 public class MyInvocationHandler implements InvocationHandler {
 
     // 保存被代理实例
-    private Object object;
+    private final Object object;
 
     public MyInvocationHandler(Object object){
         this.object = object;
@@ -49,7 +49,7 @@ public class MyInvocationHandler implements InvocationHandler {
 
         System.out.println("MyInvocationHandler invoke end");
 
-        return null;
+        return new Object();
     }
 
 

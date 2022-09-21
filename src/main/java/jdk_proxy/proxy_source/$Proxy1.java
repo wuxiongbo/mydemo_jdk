@@ -27,11 +27,12 @@ public final class $Proxy1 extends Proxy implements Person {
     private static Method m4;
     private static Method m3;
 
+    // Object的方法对象
     private static Method m2;
     private static Method m1;
     private static Method m0;
 
-    // 2. 保存委托类 InvocationHandler h。  保存为  Proxy 的成员变量
+    // 2） 依赖注入 委托类 InvocationHandler h。  保存为  Proxy 的成员变量
     public $Proxy1(InvocationHandler var1)  {
         super(var1);
     }
@@ -62,6 +63,7 @@ public final class $Proxy1 extends Proxy implements Person {
     }
 
 
+    // Object 的方法
     @Override
     public final String toString()  {
         try {
@@ -96,7 +98,10 @@ public final class $Proxy1 extends Proxy implements Person {
         }
     }
 
-    // 1.反射获取 接口的方法对象
+
+
+
+    // 1）反射获取 接口的方法对象
     static {
         try {
 

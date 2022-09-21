@@ -1,9 +1,9 @@
 package asm.asm;
 
 import asm.decorator.AccountImpl;
-import com.sun.xml.internal.ws.org.objectweb.asm.ClassAdapter;
-import com.sun.xml.internal.ws.org.objectweb.asm.ClassReader;
-import com.sun.xml.internal.ws.org.objectweb.asm.ClassWriter;
+//import com.sun.xml.internal.ws.org.objectweb.asm.ClassAdapter;
+//import com.sun.xml.internal.ws.org.objectweb.asm.ClassReader;
+//import com.sun.xml.internal.ws.org.objectweb.asm.ClassWriter;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -26,19 +26,19 @@ public class SecureAccountGenerator {
     public AccountImpl generateSecureAccount()
             throws ClassFormatError,InstantiationException, IllegalAccessException, IOException {
         if (null == secureAccountClass) {
-            ClassReader cr = new ClassReader("asm.decorator.AccountImpl");
-            ClassWriter cw = new ClassWriter(ClassWriter.COMPUTE_MAXS);
-            ClassAdapter classAdapter = new AddSecurityCheckClassAdapter(cw);
-            cr.accept(classAdapter, ClassReader.SKIP_DEBUG);
-            byte[] data = cw.toByteArray();
+//            ClassReader cr = new ClassReader("asm.decorator.AccountImpl");
+//            ClassWriter cw = new ClassWriter(ClassWriter.COMPUTE_MAXS);
+//            ClassAdapter classAdapter = new AddSecurityCheckClassAdapter(cw);
+//            cr.accept(classAdapter, ClassReader.SKIP_DEBUG);
+//            byte[] data = cw.toByteArray();
+
+//
+//            File file = new File("D:\\workspace\\wxb\\demo\\target\\classes\\asm\\decorator\\AccountImpl$EnhancedByASM.class");
+//            FileOutputStream fout = new FileOutputStream(file);
+//            fout.write(data);
 
 
-            File file = new File("D:\\workspace\\wxb\\demo\\target\\classes\\asm\\decorator\\AccountImpl$EnhancedByASM.class");
-            FileOutputStream fout = new FileOutputStream(file);
-            fout.write(data);
-
-
-            secureAccountClass = classLoader.defineClassFromClassFile("asm.decorator.AccountImpl$EnhancedByASM",data);
+//            secureAccountClass = classLoader.defineClassFromClassFile("asm.decorator.AccountImpl$EnhancedByASM",data);
         }
         return (AccountImpl) secureAccountClass.newInstance();
     }
