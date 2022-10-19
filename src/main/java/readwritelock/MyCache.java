@@ -1,26 +1,20 @@
-package lock;
+package readwritelock;
 
-/**
- * 读写锁
- * 多个线程 同时读一个资源类没有任何问题，所以为了满足并发量，读取共享资源应该可以同时进行
- * 但是，如果一个线程想去写共享资源，就不应该再有其它线程可以对该资源进行读或写
- *
- * @author: 陌溪
- * @create: 2020-03-15-16:59
- */
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.locks.Lock;
 
 /**
- * 资源类
+ * 读写锁
+ * 可  并发 '读'
+ *       多个线程 同时读一个资源类没有任何问题，所以为了满足并发量，读取共享资源应该可以同时进行
+ * 不可 并发 '写'
+ *       但是，如果一个线程想去写共享资源，就不应该再有其它线程可以对该资源进行读或写
  */
 class MyCache {
 
-    private volatile Map<String, Object> map = new HashMap<>();
-    // private Lock lock = null;
+    private static final Map<String, Object> MAP = new HashMap<>();
 
     /**
      * 定义写操作
@@ -36,7 +30,7 @@ class MyCache {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        map.put(key, value);
+        MAP.put(key, value);
         System.out.println(Thread.currentThread().getName() + "\t 写入完成");
     }
 
@@ -48,7 +42,7 @@ class MyCache {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        Object value = map.get(key);
+        Object value = MAP.get(key);
         System.out.println(Thread.currentThread().getName() + "\t 读取完成：" + value);
     }
 

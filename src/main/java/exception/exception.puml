@@ -1,0 +1,15 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class Throwable
+class Error
+class Exception
+class RuntimeException
+class OtherException
+
+Throwable <|-- Error : unchecked
+Throwable <|-- Exception
+Exception <|-- RuntimeException : unchecked
+Exception <|-- OtherException
+
+@enduml

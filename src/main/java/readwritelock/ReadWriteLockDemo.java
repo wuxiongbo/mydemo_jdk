@@ -1,4 +1,4 @@
-package lock;
+package readwritelock;
 
 /**
  * <p>描述类的信息</p>
@@ -14,7 +14,7 @@ public class ReadWriteLockDemo {
 
 //        MyCache myCache = new MyCache();
 
-        MyCacheCuncurrent myCache = new MyCacheCuncurrent();
+        MyCacheConcurrent myCache = new MyCacheConcurrent();
 
 
         // 线程操作资源类，5个线程写

@@ -1,4 +1,4 @@
-package lock;
+package readwritelock;
 
 /**
  * 读写锁
@@ -17,21 +17,18 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 /**
  * 资源类
  */
-class MyCacheCuncurrent {
+class MyCacheConcurrent {
+
+    private static final Map<String, Object> MAP = new HashMap<>();
 
     /**
-     * 缓存中的东西，必须保持可见性，因此使用volatile修饰
-     */
-    private volatile Map<String, Object> map = new HashMap<>();
-
-    /**
-     * 创建一个读写锁
+     * 创建一个 "读写锁"
      * 它是一个读写融为一体的锁，在使用的时候，需要转换
      */
-    private ReentrantReadWriteLock rwLock = new ReentrantReadWriteLock();
+    private final ReentrantReadWriteLock rwLock = new ReentrantReadWriteLock();
 
     /**
-     * 定义写操作
+     * 定义 写操作
      * 满足：原子 + 独占
      * @param key
      * @param value
@@ -52,7 +49,7 @@ class MyCacheCuncurrent {
                 e.printStackTrace();
             }
 
-            map.put(key, value);
+            MAP.put(key, value);
 
             System.out.println(Thread.currentThread().getName() + "\t 写入完成");
 
@@ -67,7 +64,8 @@ class MyCacheCuncurrent {
     }
 
     /**
-     * 获取
+     * 定义 读操作
+     *
      * @param key
      */
     public void get(String key) {
@@ -86,7 +84,7 @@ class MyCacheCuncurrent {
                 e.printStackTrace();
             }
 
-            Object value = map.get(key);
+            Object value = MAP.get(key);
 
             System.out.println(Thread.currentThread().getName() + "\t 读取完成：" + value);
 
@@ -104,7 +102,7 @@ class MyCacheCuncurrent {
      * 清空缓存
      */
     public void clean() {
-        map.clear();
+        MAP.clear();
     }
 
 
