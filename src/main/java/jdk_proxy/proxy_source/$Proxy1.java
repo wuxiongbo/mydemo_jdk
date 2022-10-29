@@ -24,15 +24,15 @@ import java.lang.reflect.UndeclaredThrowableException;
  */
 public final class $Proxy1 extends Proxy implements Person {
     // 接口的方法对象
-    private static Method m4;
-    private static Method m3;
+    private static Method m4;  // sayGoodBye
+    private static Method m3;  // sayHello
 
     // Object的方法对象
-    private static Method m2;
-    private static Method m1;
-    private static Method m0;
+    private static Method m2;  // toString
+    private static Method m1;  // equals
+    private static Method m0;  // hashCode
 
-    // 2） 依赖注入 委托类 InvocationHandler h。  保存为  Proxy 的成员变量
+    // 2. 依赖注入 委托类 InvocationHandler h，  保存到父类 Proxy 的成员变量中。
     public $Proxy1(InvocationHandler var1)  {
         super(var1);
     }
@@ -101,7 +101,7 @@ public final class $Proxy1 extends Proxy implements Person {
 
 
 
-    // 1）反射获取 接口的方法对象
+    // 1.反射获取 接口的方法对象
     static {
         try {
 

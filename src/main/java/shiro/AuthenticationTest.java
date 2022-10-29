@@ -37,15 +37,15 @@ public class AuthenticationTest {
 
         SecurityUtils.setSecurityManager(defaultSecurityManager);
 
-        //2. 构建 Subject 用户主体
+        //2. 构建 用户主体。 Subject
         Subject subject = SecurityUtils.getSubject();
 
 
-        //3. 构建 身份、凭证  用于登录
+        //3. 构建 身份、凭证。  用于登录
         UsernamePasswordToken token = new UsernamePasswordToken("Fox","123456");
 
 
-        // 从 subject主体  获取登录用户身份。 （可以理解成用户名）   principal  主体、身份
+        // 从 subject主体  获取登录用户身份。 （可以简单理解成 用户名）   principal  主体、身份
         PrincipalCollection principals = subject.getPrincipals();
         System.out.println("登录前，从 subject 获取用户身份："+principals);
 
