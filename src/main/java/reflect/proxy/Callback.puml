@@ -1,0 +1,13 @@
+@startuml
+
+!theme plain
+top to bottom direction
+skinparam linetype ortho
+
+interface Callback << interface >>
+interface InvocationHandler << interface >>
+interface MethodInterceptor << interface >>
+
+Callback ^-[#008200,plain]- InvocationHandler
+Callback ^-[#008200,plain]- MethodInterceptor
+@enduml

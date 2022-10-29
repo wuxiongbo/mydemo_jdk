@@ -390,6 +390,9 @@ public class Proxy1 implements java.io.Serializable {
      *          to implement
      * @return  a Constructor of the proxy class taking single
      *          {@code InvocationHandler} parameter
+     *
+     * 生成代理类
+     * @see ProxyBuilder#build()
      */
     private static Constructor<?> getProxyConstructor(Class<?> caller,
                                                       ClassLoader loader,
@@ -521,6 +524,7 @@ public class Proxy1 implements java.io.Serializable {
 
             /*
              * Choose a name for the proxy class to generate.
+             * 选择要生成的代理类的名称。
              */
             long num = nextUniqueNumber.getAndIncrement();
             String proxyName = proxyPkg.isEmpty()
@@ -532,6 +536,7 @@ public class Proxy1 implements java.io.Serializable {
 
             /*
              * Generate the specified proxy class.
+             * 生成指定的代理类
              */
             byte[] proxyClassFile = ProxyGenerator1.generateProxyClass(loader, proxyName, interfaces, accessFlags);
             try {
@@ -645,12 +650,12 @@ public class Proxy1 implements java.io.Serializable {
          */
         @SuppressWarnings("removal")
         Constructor<?> build() {
-            Class<?> proxyClass = defineProxyClass(module, interfaces);
+            Class<?> proxyClass = defineProxyClass(module, interfaces); // 生成代理类
             assert !module.isNamed() || module.isOpen(proxyClass.getPackageName(), Proxy.class.getModule());
 
             final Constructor<?> cons;
             try {
-                cons = proxyClass.getConstructor(constructorParams);
+                cons = proxyClass.getConstructor(constructorParams); // 获取代理类的构造方法实例
             } catch (NoSuchMethodException e) {
                 throw new InternalError(e.toString(), e);
             }
@@ -1014,6 +1019,7 @@ public class Proxy1 implements java.io.Serializable {
 
         /*
          * Look up or generate the designated proxy class and its constructor.
+         * 查找或生成指定的代理类及其构造函数。
          */
         Constructor<?> cons = getProxyConstructor(caller, loader, interfaces);
 
@@ -1030,7 +1036,7 @@ public class Proxy1 implements java.io.Serializable {
             if (caller != null) {
                 checkNewProxyPermission(caller, cons.getDeclaringClass());
             }
-
+            // 实例化代理类。依赖注入 InvocationHandler
             return cons.newInstance(new Object[]{h});
         } catch (IllegalAccessException | InstantiationException e) {
             throw new InternalError(e.toString(), e);

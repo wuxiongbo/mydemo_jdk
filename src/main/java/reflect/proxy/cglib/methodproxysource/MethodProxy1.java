@@ -1,4 +1,4 @@
-package reflect.proxy.cglib;
+package reflect.proxy.cglib.methodproxysource;
 
 /*
  * Copyright 2003,2004 The Apache Software Foundation
@@ -35,35 +35,47 @@ import net.sf.cglib.reflect.FastClass;
  * @version $Id: MethodProxy.java,v 1.16 2009/01/11 20:09:48 herbyderby Exp $
  */
 public class MethodProxy1 {
-    private Signature sig1;  //被代理方法签名
-    private Signature sig2;  //代理方法签名
+    /**
+     * 被代理方法的方法签名（对应方法的逻辑，为代理增强后的逻辑）
+     */
+    private Signature sig1;
+    /**
+     * cglib生成的方法 的方法签名（对应方法的逻辑，直接委托给父类实现）
+     */
+    private Signature sig2;
+
     private CreateInfo createInfo;
 
     private final Object initLock = new Object();
     private volatile FastClassInfo fastClassInfo;
 
     /**
+     * MethodProxy  构造器
      *
-     * c1:    被代理对象Class
-     * c2:    代理对象Class
+     * c1:     被代理对象Class
+     * c2:     代理对象Class
      * desc：  入参类型
-     * name1:  被代理方法名
-     * name2:  代理方法名
+     * name1:  原方法名
+     * name2:  cglib生成的方法
      *
      * For internal use by {@link Enhancer} only; see the {@link net.sf.cglib.reflect.FastMethod} class
      * for similar functionality.
      */
-    public static MethodProxy1 create(Class c1, Class c2, String desc, String name1, String name2) {
-        MethodProxy1 proxy = new MethodProxy1();
-        proxy.sig1 = new Signature(name1, desc);  //被代理方法签名
-        proxy.sig2 = new Signature(name2, desc);  //代理方法签名
-        proxy.createInfo = new MethodProxy1.CreateInfo(c1, c2);
-        return proxy;
+    public static MethodProxy1 create(Class c1, Class proxy, String desc, String name1, String name2) {
+        MethodProxy1 methodProxy = new MethodProxy1();
+
+        // 被代理方法的方法签名。        如：getConcreteMethodA
+        methodProxy.sig1 = new Signature(name1, desc);
+        // cglib生成的方法 的方法签名。  如：CGLIB$getConcreteMethodA$1
+        methodProxy.sig2 = new Signature(name2, desc);
+
+        // 记录 被代理类、代理类
+        methodProxy.createInfo = new MethodProxy1.CreateInfo(c1, proxy);
+        return methodProxy;
     }
 
     // MethodProxy 的 invoke/invokeSuper ，都调用了init()
-    private void init()
-    {
+    private void init() {
         /*
          * Using a volatile invariant allows us to initialize the FastClass and
          * method index pairs atomically.
@@ -72,20 +84,24 @@ public class MethodProxy1 {
          * code could allow fastClassInfo to be instantiated more than once, which
          * appears to be benign.
          */
-        if (fastClassInfo == null)
-        {
-            synchronized (initLock)
-            {
-                if (fastClassInfo == null)
-                {
-                    CreateInfo ci = createInfo;
+        if (fastClassInfo == null) {
+            synchronized (initLock) {
+                if (fastClassInfo == null) {
+                    CreateInfo createInfo0 = createInfo;
 
-                    //  FastClass并不是跟代理类一块生成的，而是在第一次执行 MethodProxy invoke/invokeSuper时 生成的，并放在了缓存中。
+                    // FastClass 并不是跟代理类一块生成的，而是在第一次执行 MethodProxy invoke/invokeSuper时 生成的，并放在了缓存中。
                     FastClassInfo fci = new MethodProxy1.FastClassInfo();
-                    fci.f1 = helper(ci, ci.c1);      // 如果缓存中有，就取出；没有，就生成新的 FastClass
-                    fci.f2 = helper(ci, ci.c2);
-                    fci.i1 = fci.f1.getIndex(sig1);  // 获取方法的index
-                    fci.i2 = fci.f2.getIndex(sig2);
+
+
+                    // 如果缓存中有，就取出；没有，就生成新的 FastClass。
+                    // FastClass 中还包括了 代理类、被代理类 的构造方法
+                    fci.f1 = helper(createInfo0, createInfo0.c1);  // 被代理对象 对应的 FastClass  如：ConcreteClassNoInterface$$FastClassByCGLIB$$f6027e63
+                    fci.f2 = helper(createInfo0, createInfo0.c2);  // 代理对象 对应的 FastClass    如：C0000x27e1ddf4
+
+                    // 获取方法的index
+                    fci.i1 = fci.f1.getIndex(sig1);  // 被代理方法的 索引
+                    fci.i2 = fci.f2.getIndex(sig2);  // cglib生成的方法 的索引
+
                     fastClassInfo = fci;
                     createInfo = null;
                 }
@@ -93,24 +109,21 @@ public class MethodProxy1 {
         }
     }
 
-    private static class FastClassInfo
-    {
-        FastClass f1;  //被代理类FastClass
-        FastClass f2;  //代理类FastClass
-        int i1;        //被代理类的方法签名(index)
-        int i2;        //代理类的方法签名
+    private static class FastClassInfo {
+        FastClass f1;  //被代理类FastClass   例如：ConcreteClassNoInterface$$FastClassByCGLIB$$f6027e63
+        FastClass f2;  //代理类FastClass     例如：C0000x27e1ddf4
+        int i1;        // 被代理类的方法名 对应方法的签名 索引(index)
+        int i2;        // cglib生成的方法名 对应方法的签名   索引(index)
     }
 
-    private static class CreateInfo
-    {
+    private static class CreateInfo {
         Class c1;  // 被代理对象Class
         Class c2;  // 代理对象Class
         NamingPolicy namingPolicy;
         GeneratorStrategy strategy;
         boolean attemptLoad;
 
-        public CreateInfo(Class c1, Class c2)
-        {
+        public CreateInfo(Class c1, Class c2) {
             this.c1 = c1;
             this.c2 = c2;
             AbstractClassGenerator fromEnhancer = AbstractClassGenerator.getCurrent();
@@ -122,6 +135,13 @@ public class MethodProxy1 {
         }
     }
 
+    /**
+     * 建造者设计模式：
+     * 获取 或 构造 FastClass
+     * @param ci
+     * @param type
+     * @return
+     */
     private static FastClass helper(MethodProxy1.CreateInfo ci, Class type) {
         FastClass.Generator g = new FastClass.Generator();
         g.setType(type);
@@ -215,14 +235,24 @@ public class MethodProxy1 {
      */
     public Object invoke(Object obj, Object[] args) throws Throwable {
         try {
+
+            // 初始化方法。 构造 或 获取 fastClassInfo;  方法索引在这里生成
             init();
+
             MethodProxy1.FastClassInfo fci = fastClassInfo;
+
+            // 关键是这里的 FastClass机制。 可以看到，invoke 不是反射的方法。
+            // fci.i1 方法索引
+            // obj    被代理对象
+            // args   方法参数
             return fci.f1.invoke(fci.i1, obj, args);
+
         } catch (InvocationTargetException e) {
             throw e.getTargetException();
         } catch (IllegalArgumentException e) {
-            if (fastClassInfo.i1 < 0)
+            if (fastClassInfo.i1 < 0) {
                 throw new IllegalArgumentException("Protected method: " + sig1);
+            }
             throw e;
         }
     }
@@ -239,8 +269,16 @@ public class MethodProxy1 {
      */
     public Object invokeSuper(Object obj, Object[] args) throws Throwable {
         try {
+
+            // 初始化方法。 构造 或 获取 fastClassInfo;  方法索引在这里生成
             init();
+
             FastClassInfo fci = fastClassInfo;
+
+            // 关键是这里的 FastClass机制。  可以看到，invoke 不是反射的方法。
+            // fci.i2 方法索引
+            // obj    代理对象
+            // args   方法参数
             return fci.f2.invoke(fci.i2, obj, args);
         } catch (InvocationTargetException e) {
             throw e.getTargetException();

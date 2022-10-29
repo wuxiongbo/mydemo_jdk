@@ -22,17 +22,18 @@ import java.lang.reflect.UndeclaredThrowableException;
  * @date 2021/8/31
  * </pre>
  */
-public final class $Proxy1 extends Proxy implements Person {
-    // 接口的方法对象
+public final class $Proxy1 extends Proxy1 implements Person {
+    // 父类接口的方法 对象
     private static Method m4;
     private static Method m3;
 
-    // Object的方法对象
+    // 根对象Object的方法 对象
     private static Method m2;
     private static Method m1;
     private static Method m0;
 
-    // 2） 依赖注入 委托类 InvocationHandler h。  保存为  Proxy 的成员变量
+    // 2） 依赖注入 委托类 InvocationHandler h。  保存为  Proxy 的成员变量。
+    // 这里的构造方法是 由反射调用
     public $Proxy1(InvocationHandler var1)  {
         super(var1);
     }
@@ -63,7 +64,7 @@ public final class $Proxy1 extends Proxy implements Person {
     }
 
 
-    // Object 的方法
+    // =============== Object 的方法 ==================
     @Override
     public final String toString()  {
         try {

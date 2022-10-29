@@ -2,6 +2,7 @@ package jdk_proxy;
 
 import jdk_proxy.bean.Student;
 import jdk_proxy.static_proxy.PersonProxy;
+import jdk_proxy.static_proxy2.StudentProxy;
 
 /**
  * <p>静态代理</p>
@@ -23,8 +24,6 @@ public class Main2 {
         PersonProxy proxy = new PersonProxy(student);
 
 
-
-
         //调用 代理类对象的方法
         proxy.sayHello("welcome to java", 20);
 
@@ -32,6 +31,16 @@ public class Main2 {
 
         //调用代理类对象的方法
         proxy.sayGoodBye(true, 100);
+
+
+
+
+        System.out.println("=======示例2：方法自调用=====");
+
+
+        StudentProxy studentProxy = new StudentProxy();
+        studentProxy.say();
+
 
     }
 
