@@ -12,6 +12,12 @@ import org.junit.jupiter.api.Test;
 /**
  * <p>描述类的信息</p>
  *
+ * realm 服务端保存的用户数据载体，并包含校验逻辑
+ *
+ * token 客户端登录凭证
+ *
+ * subject 校验主体
+ *
  * <pre>
  * @author wuxiongbo
  * @date 2021/8/19

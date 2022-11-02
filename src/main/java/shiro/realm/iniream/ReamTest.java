@@ -2,6 +2,7 @@ package shiro.realm.iniream;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.authz.AuthorizationException;
 import org.apache.shiro.mgt.DefaultSecurityManager;
 import org.apache.shiro.realm.Realm;
 import org.apache.shiro.realm.text.IniRealm;
@@ -47,12 +48,29 @@ public class ReamTest {
         // 是否登录成功
         subject.isAuthenticated();
 
+
+
         // 检查 用户的 角色
         subject.checkRoles("admin");
+        try {
+            subject.checkRole("SuperAdmin");
+        } catch(AuthorizationException e) {
+            System.out.println("没有超管角色");
+        }
 
         // 检查 用户的 角色的 权限
-        subject.checkPermission("user:delete");
-        subject.checkPermission("user:insert");
+        try {
+            subject.checkPermission("user:delete");
+        } catch (AuthorizationException e) {
+            System.out.println("没有删除权限");
+//            throw new RuntimeException(e);
+        }
+        try {
+            subject.checkPermission("user:insert");
+        } catch (AuthorizationException e) {
+            System.out.println("没有插入权限");
+//            throw new RuntimeException(e);
+        }
 
 
     }

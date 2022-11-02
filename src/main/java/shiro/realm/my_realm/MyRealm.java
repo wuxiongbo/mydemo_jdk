@@ -33,7 +33,7 @@ public class MyRealm extends AuthorizingRealm {
     }
 
     /**
-     * 权限 鉴权
+     * 权限 鉴权；  Authorization 授权
      * 2. 保存 真实 角色、权限
      * @param principals
      * @return
@@ -63,7 +63,7 @@ public class MyRealm extends AuthorizingRealm {
     }
 
     /**
-     * 登陆认证
+     * 登陆认证；  Authentication 认证
      * 1. 校验 用户名、密码
      * @param token  AuthenticationToken中的 身份/凭证 是 用户提交 的数据，还没有经过认证
      *               AuthenticationToken对象，代表了 身份(Principal) 和 凭证(Credentials)
@@ -89,15 +89,14 @@ public class MyRealm extends AuthorizingRealm {
             String realmName = getName(); // 当前 自定义realm 的名称
             System.out.println("myRealmName:"+realmName);
 
-            SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(
-                    // 这里用来保存信息用。保存的信息 在另一个方法中可以获取到。
-                    new User("可以使用新身份","可以使用新的密码"),
-                    // 关键是校验 password  是否匹配
-                    passwordFromDB,
-                    // 当前 自定义realm 的名称
-                    realmName);
-
-            return authenticationInfo;
+            return new SimpleAuthenticationInfo(
+                        // 这里用来保存信息用。保存的信息 在另一个方法(doGetAuthorizationInfo)中可以获取到。
+                        new User("可以使用新身份","可以使用新的密码"),
+                        // 关键是校验 password  是否匹配
+                        passwordFromDB,
+                        // 当前 自定义realm 的名称
+                        realmName
+            );
         }
         return null;
     }
