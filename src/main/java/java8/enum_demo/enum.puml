@@ -1,0 +1,31 @@
+@startuml
+'https://plantuml.com/class-diagram
+' 断言设计方案
+' BusinessExceptionAssert  只实现 IAssert 的接口
+' ErrorCodeDefine  的接口 交给枚举 ErrorCodeEnum 实现
+' 关键理解 BusinessExceptionAssert 中的 this。  多态特性的典型应用
+
+interface ErrorCodeDefine{
+    + getMsg():String
+    + getCode():String
+    + getLevel():String
+}
+interface IAssert{
+    + newException():BusinessException
+}
+interface BusinessExceptionAssert extends IAssert,ErrorCodeDefine{
+    + newException():BusinessException
+    + assertXxx()
+}
+enum ErrorCodeEnum implements BusinessExceptionAssert{
+        + getMsg():String
+        + getCode():String
+        + getLevel():String
+}
+
+class BusinessException
+
+BusinessExceptionAssert -right-> BusinessException : 依赖
+
+
+@enduml
