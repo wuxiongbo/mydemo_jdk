@@ -1,4 +1,4 @@
-package reflect.jdk_reflect.Bridge.dependence;
+package reflect.jdk_reflect.bridge.dependence;
 
 /**
  * <p>桥接方法</p>
@@ -17,7 +17,8 @@ package reflect.jdk_reflect.Bridge.dependence;
  * 　　System.out.println(s);
  * }
  *
- * 根本就没有实现 void method(Object t) 方法。 这是怎么回事呢？ 其实，虚拟机自动实现了一个方法。
+ * 根本就没有实现 void method(Object t) 方法。 这是怎么回事呢？
+ * 其实，虚拟机 为AClass 自动实现了一个方法。
  *
  * 我们使用javap指令，反编译AClass
  *
@@ -32,13 +33,13 @@ package reflect.jdk_reflect.Bridge.dependence;
  *   public void method(java.lang.Object);
  * }
  *
- *
- * method(Ljava/lang/String;)V
- * method(Ljava/lang/Object;)V
+ * 把关键部分拧出来：
+ *   method(Ljava/lang/String;)V
+ *   method(Ljava/lang/Object;)V
  * -------------------------------------------------------------------------------------------------------------------------
  *
- * 可以看到，class文件中，多出了一个方法，这个方法就是桥接方法。
- * 也就是说，JVM 在编译时，为我们隐式地创建了 桥接方法。
+ * 可以看到，class文件中，多出了一个方法，这个方法就是 桥接方法。
+ * 也就是说，JVM 在编译时，为我们 隐式地 创建了 桥接方法。
  *
  *
  * <pre>

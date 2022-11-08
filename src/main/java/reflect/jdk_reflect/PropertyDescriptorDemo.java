@@ -148,35 +148,52 @@ public class PropertyDescriptorDemo {
      */
     @Test
     void test3() throws NoSuchMethodException {
-        Method setUserName = UserInfo.class.getMethod("setUserName",String.class);
+        Method setUserNameMethod = UserInfo.class.getMethod("setUserName",String.class);
 
-        Executable executable = setUserName;
+        Executable executable = setUserNameMethod;
+
+        // 获取方法所在类
         Class<?> declaringClass = executable.getDeclaringClass();
+        System.out.println(declaringClass.getName());
+
+        // class文件名
         String classFileName = ClassUtils.getClassFileName(declaringClass);  // spring
+        System.out.println(classFileName);
+
 
         MyReflectUtil util = new MyReflectUtil();
 
-        try (InputStream is = declaringClass.getResourceAsStream(classFileName)){
-            Map<Executable, String[]> map = new ConcurrentHashMap<>(32);
+        try (InputStream in = declaringClass.getResourceAsStream(classFileName)){
 
-            ClassReader classReader = new ClassReader(is);  // spring
+            // 用于保存 读取到的类信息
+            Map<Executable, String[]> executableMap = new ConcurrentHashMap<>(32);
+
+            // 读取class文件，获取变量名
+            // asm 相关 api
+            assert in != null;
+            ClassReader classReader = new ClassReader(in);  // spring
             classReader.accept(
                     // 实例化私有静态内部类
                     (ClassVisitor)util.getStaticInner(
                             LocalVariableTableParameterNameDiscoverer.class,
                             "ParameterNameDiscoveringVisitor",
-                            declaringClass,map),
+                            declaringClass,executableMap),
                     0);
 
 
-            String[] strings = map.get(executable);
 
-            System.out.println(Arrays.toString(strings));
+            String[] paramNames = executableMap.get(executable);
+
+            System.out.println(Arrays.toString(paramNames));
 
         } catch (Exception ex) {
             ex.printStackTrace();
         }
 
+
+        LocalVariableTableParameterNameDiscoverer discoverer = new LocalVariableTableParameterNameDiscoverer();
+        String[] parameterNames = discoverer.getParameterNames(setUserNameMethod);
+        System.out.println(Arrays.toString(parameterNames));
 
 
     }

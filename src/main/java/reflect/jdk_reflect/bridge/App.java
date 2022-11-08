@@ -1,11 +1,13 @@
-package reflect.jdk_reflect.Bridge;
+package reflect.jdk_reflect.bridge;
 
-import reflect.jdk_reflect.Bridge.dependence.AClass;
+import reflect.jdk_reflect.bridge.dependence.AClass;
 
 import java.lang.reflect.Method;
 
 /**
  * <p> Java反射中method.isBridge() 判断是否为桥接方法 </p>
+ *
+ * 桥接方法
  *
  * https://www.cnblogs.com/zsg88/p/7588929.html
  *

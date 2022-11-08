@@ -1,7 +1,7 @@
 package java8.innerclass;
 
 /**
- * <p>描述类的信息</p>
+ * <p>内部类 可以访问外围类 的私有成员</p>
  *
  * <pre>
  * @author wuxiongbo

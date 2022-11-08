@@ -1,15 +1,11 @@
 package reflect.jdk_reflect.superclass;
 
 import org.junit.jupiter.api.Test;
-import reflect.jdk_reflect.Bridge.dependence.AClass;
-import reflect.jdk_reflect.Bridge.dependence.SuperClass;
-import reflect.proxy.cglib.Main;
+import reflect.jdk_reflect.bridge.dependence.AClass;
+import reflect.jdk_reflect.bridge.dependence.SuperClass;
 import temp.pk.ImportDemo;
 
-import java.io.File;
 import java.lang.reflect.InvocationTargetException;
-import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
