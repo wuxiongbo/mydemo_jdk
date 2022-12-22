@@ -63,14 +63,21 @@ public class Main {
 
         System.setProperty(DebuggingClassWriter.DEBUG_LOCATION_PROPERTY, "/Users/10027088/Downloads/logs");
 
+        ConcreteClassNoInterface origin = new ConcreteClassNoInterface();
+
         // 这里Enhancer类是CGLib中的一个字节码增强器，它可以方便的对你想要处理的类进行扩展，以后会经常看到它。
         Enhancer enhancer = new Enhancer();
+
         // 将被代理类ConcreteClassNoInterface设置成父类，
-        enhancer.setSuperclass(ConcreteClassNoInterface.class);
+        enhancer.setSuperclass(origin.getClass());
+
         // 设置 方法拦截器ConcreteClassInterceptor
-        enhancer.setCallback(new ConcreteClassInterceptor(new ConcreteClassNoInterface()));
+        enhancer.setCallback(new ConcreteClassInterceptor(origin));
         // 设置 类拦截器
 //        enhancer.setCallback(new ConcreteClassInvocationHandler());
+
+
+
 
         // 执行enhancer.create()动态生成一个代理类，并创建实例。
         // 代理类 实例 流程：
@@ -78,6 +85,8 @@ public class Main {
         Object obj = enhancer.create();
         // 将 Object 强制向下转型成  代理类的父类型ConcreteClassNoInterface。
         ConcreteClassNoInterface proxy = (ConcreteClassNoInterface)obj;
+
+
 
 
         System.out.println("=======================");

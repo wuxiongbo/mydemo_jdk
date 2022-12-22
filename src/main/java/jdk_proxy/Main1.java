@@ -3,7 +3,6 @@ package jdk_proxy;
 import jdk_proxy.bean.Person;
 import jdk_proxy.bean.Student;
 import jdk_proxy.dynamic_proxy.StudentInvocationHandler;
-import jdk_proxy.proxy_source.Proxy1;
 
 import java.lang.reflect.Proxy;
 
@@ -12,17 +11,25 @@ import java.lang.reflect.Proxy;
  *
  * 关于 spring 事务 自调用失效的思考
  *
+ * 首先，个人总结 对 "代理" 、 "装饰"  这两个概念的理解
+ * 代理：
+ *     代理类 完全可以取代  被代理的原始类 的 方法行为，从而 代理后的方法行为 与 原始类的方法行为 完全无关。而选择不增强。
+ *     当然，也可以选择 代理类 将方法的实现 委托给  被代理的原始类，从而对原始类的方法增强。但是，这样做就有点类似 "装饰" 的思想
+ * 装饰：
+ *     装饰器，是对原始对象 方法的增强，不能改变原始对象 的行为的 原始意图。
+ *
+ *
  * 1) 从 jdk代理 分析，更容易理解。
  *    通常 我们会在 自己实现的  StudentInvocationHandler 里面依赖注入 原始对象。
- *    原始对象的 sayHello() 调用 自身的  sayGoodBye();
+ *    原始 Student对象 的 sayHello() 调用 自身的  sayGoodBye();
  *
  *
  *    proxy.sayHello() :
- *    使用 代理对象，调用 sayHello() 方法，在  InvocationHandler 实现中，对 sayHello() 未作任何增强处理，委托给了 原始对象实例。
- *    原始对象 的 sayHello() 方法  对 自身 sayGoodBye() 调用的 是未增强方法。未经过  InvocationHandler 拦截
+ *    使用 代理对象，调用 sayHello() 方法，正如本示例所示，在  InvocationHandler 实现中，我们 对 sayHello() 未作任何增强处理，而是 委托给了 原始对象实例。
+ *    而 原始对象 的 sayHello() 方法  对 自身 sayGoodBye() 调用的 是未增强方法。所以，sayGoodBye() 未经过  InvocationHandler 拦截
  *
  *    proxy.sayGoodBye() :
- *    使用 代理对象，调用 sayGoodBye() 方法， 则经过了  InvocationHandler 拦截。 实现了增强。
+ *    如果 使用 代理对象，直接调用 sayGoodBye() 方法， 则经过了  InvocationHandler 拦截。 实现了增强。
  *
  *
  *  2）回到 spring aop 中， 切面表达式 决定了拦截规则。
@@ -53,18 +60,22 @@ public class Main1 {
         //一、创建需要被代理的类
         Student student = new Student();
 
+
+
         //二、创建代理
-        // 1.获得加载被代理类的 “类加载器”
-        ClassLoader loader = Thread.currentThread().getContextClassLoader();
-        // 2.指明被代理类实现的 “接口”
+        // 1. arg1 获得加载被代理类的 “类加载器”
+        ClassLoader loader = Student.class.getClassLoader();
+        // 2. arg2 指明被代理类实现的 “接口”
         Class<?>[] interfacesOfStudent = student.getClass().getInterfaces();
-        // 3.创建 "被代理类" Student  的 “委托类” MyInvocationHandler。
+        // 3. arg3 创建 "被代理类" Student  的 “委托类” MyInvocationHandler。
         //   之后，每调用 "被代理类" 的方法，
         //   都会 委托给这个类的 invoke(Object proxy, Method method, Object[] args)方法
         StudentInvocationHandler h = new StudentInvocationHandler(student);
 
         // 4.生成 代理类 实例
         Person proxy = (Person) Proxy.newProxyInstance(loader, interfacesOfStudent, h);
+
+
 
 
         //三、通过代理类  调用被代理类的方法

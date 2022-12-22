@@ -8,6 +8,7 @@ import java.lang.reflect.InvocationTargetException;
 
 /**
  * 被代理类对应的 fastclass
+ *
  * @author Xander Wu
  * @date 2022/10/26 14:05
  */

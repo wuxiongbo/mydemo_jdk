@@ -27,35 +27,28 @@ public class ConcreteClassNoInterface$$EnhancerByCGLIB$$bd737885 extends Concret
 
     private static Object CGLIB$CALLBACK_FILTER;
 
-    /**
-     * 被代理方法
-     */
-    private static Method CGLIB$getConcreteMethodB$0$Method = null;
-    /**
-     * 代理方法
-     */
-    private static MethodProxy1 CGLIB$getConcreteMethodB$0$Proxy = null;
-
     private static Object[] CGLIB$emptyArgs = null; // 空参
 
 
 
     /**
-     * ==============代理方法==========
+     * ===========代理方法 x$x$x$Proxy 、被代理方法 x$x$x$Method  ============
      */
     private static Method CGLIB$getConcreteMethodA$1$Method = null;
-
-
-    /**
-     * ===========被代理方法============
-     */
     private static MethodProxy1 CGLIB$getConcreteMethodA$1$Proxy = null;
+
+    private static Method CGLIB$getConcreteMethodB$0$Method = null;
+    private static MethodProxy1 CGLIB$getConcreteMethodB$0$Proxy = null;
+
     private static Method CGLIB$equals$2$Method = null;
     private static MethodProxy1 CGLIB$equals$2$Proxy = null;
+
     private static Method CGLIB$toString$3$Method = null;
     private static MethodProxy1 CGLIB$toString$3$Proxy = null;
+
     private static Method CGLIB$hashCode$4$Method = null;
     private static MethodProxy1 CGLIB$hashCode$4$Proxy = null;
+
     private static Method CGLIB$clone$5$Method = null;
     private static MethodProxy1 CGLIB$clone$5$Proxy = null;
 
@@ -139,6 +132,7 @@ public class ConcreteClassNoInterface$$EnhancerByCGLIB$$bd737885 extends Concret
     @SneakyThrows(Exception.class)
     @Override
     public final int getConcreteMethodB(int i) {
+
         MethodInterceptor1 methodInterceptor = this.CGLIB$CALLBACK_0;
         if (methodInterceptor == null) {
             CGLIB$BIND_CALLBACKS(this);
@@ -147,19 +141,31 @@ public class ConcreteClassNoInterface$$EnhancerByCGLIB$$bd737885 extends Concret
         if (methodInterceptor == null) {
             return ConcreteClassNoInterface$$EnhancerByCGLIB$$bd737885.super.getConcreteMethodB(i);
         }
+
+
+
         Object result = null;
         try {
+
+            // args1,  当前代理对象
+            // args2,  当前方法对应的  Method
+            // args3,  当前方法的     形参
+            // args4   当前方法对应的  MethodProxy
             result = methodInterceptor.intercept(
                     this,
                     CGLIB$getConcreteMethodB$0$Method,
                     new Object[]{ i },
                     CGLIB$getConcreteMethodB$0$Proxy);
+
         } catch (Throwable e) {
             throw new RuntimeException(e);
         }
         if (result == null) {
             return 0;
         }
+
+
+
         return ((Number) result).intValue();
     }
 
@@ -186,6 +192,10 @@ public class ConcreteClassNoInterface$$EnhancerByCGLIB$$bd737885 extends Concret
 
         try {
             return methodInterceptor != null ?
+                    // args1,  当前代理对象
+                    // args2,  当前方法对应的  Method
+                    // args3,  当前方法的     形参
+                    // args4   当前方法对应的  MethodProxy
                     (String) methodInterceptor.intercept(
                             this,
                             CGLIB$getConcreteMethodA$1$Method,
@@ -216,6 +226,10 @@ public class ConcreteClassNoInterface$$EnhancerByCGLIB$$bd737885 extends Concret
         }
         Object intercept = null;
         try {
+            // args1,  当前代理对象
+            // args2,  当前方法对应的  Method
+            // args3,  当前方法的     形参
+            // args4   当前方法对应的  MethodProxy
             intercept = methodInterceptor.intercept(this, CGLIB$equals$2$Method, new Object[]{obj}, CGLIB$equals$2$Proxy);
         } catch (Throwable e) {
             throw new RuntimeException(e);

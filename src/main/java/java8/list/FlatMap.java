@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * <p>描述类的信息</p>
+ * <p>list合并</p>
  *
  * <pre>
  * @author wuxiongbo

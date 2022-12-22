@@ -7,7 +7,7 @@ import java.lang.reflect.Method;
 
 /**
  * 1. method.invoke 是反射调用，必须调用到足够次数才会进行优化
- * 2. methodProxy.invoke 是不反射调用，它会正常（间接）调用目标对象的方法（Spring 采用）
+ * 2. methodProxy.invoke 是不反射调用，它会正常（间接的）调用目标对象的方法（Spring 采用）
  * 3. methodProxy.invokeSuper 也是不反射调用，它会正常（间接）调用代理对象的方法，可以省略目标对象
  *
  * @author Jonathan

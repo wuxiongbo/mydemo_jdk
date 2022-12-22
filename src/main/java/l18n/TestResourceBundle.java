@@ -21,26 +21,29 @@ import java.util.ResourceBundle;
 public class TestResourceBundle {
     public static void main(String[] args) {
 
-        // 系统将自动寻找 message_zh_CN
+        // 系统将自动寻找 message_zh_CN; 手动创建 Local
         Locale locale1 = new Locale("zh", "CN");
         ResourceBundle resb1 = ResourceBundle.getBundle("message", locale1);
-        System.out.println(resb1.getString("aaa"));
+        System.out.println(resb1.getString("argue"));
+        System.out.println(resb1.getString("polite"));
 
-
-        // 系统将自动寻找 message_zh_CN
+        // 系统将自动寻找 message_zh_CN; 获取默认 Local
         Locale locale2 = Locale.getDefault();
         ResourceBundle resb2 = ResourceBundle.getBundle("message", locale2);
-        System.out.println(resb2.getString("aaa"));
+        System.out.println(resb2.getString("argue"));
+        System.out.println(resb2.getString("polite"));
 
-        // 系统将自动寻找 message_zh_CN
+        // 系统将自动寻找 message_zh_CN; 不指定，使用默认 Local
         ResourceBundle resb3 = ResourceBundle.getBundle("message");
-        System.out.println(resb3.getString("aaa"));
+        System.out.println(resb3.getString("argue"));
+        System.out.println(resb3.getString("polite"));
 
 
         // 系统将自动寻找 message_en_US
         Locale locale3 = new Locale("en", "US");
         ResourceBundle resb4 = ResourceBundle.getBundle("message", locale3);
-        System.out.println(resb4.getString("aaa"));
+        System.out.println(resb4.getString("argue"));
+        System.out.println(resb4.getString("polite"));
 
 
     }

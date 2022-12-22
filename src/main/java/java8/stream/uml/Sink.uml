@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>java.util.stream.Sink</OriginalElement>
+  <nodes>
+    <node x="228.125" y="64.0">java.util.function.Consumer</node>
+    <node x="471.16145833333337" y="232.0">java.util.stream.Sink.OfDouble</node>
+    <node x="325.1822916666667" y="232.0">java.util.stream.Sink.OfInt</node>
+    <node x="-389.30208333333326" y="312.0">java.util.stream.Sink.ChainedReference</node>
+    <node x="211.125" y="-14.0">java.lang.FunctionalInterface</node>
+    <node x="450.9375" y="312.0">java.util.stream.Sink.ChainedDouble</node>
+    <node x="250.625" y="142.0">java.util.stream.Sink</node>
+    <node x="161.20312500000003" y="232.0">java.util.stream.Sink.OfLong</node>
+    <node x="217.18229166666669" y="312.0">java.util.stream.Sink.ChainedInt</node>
+    <node x="-33.57291666666663" y="312.0">java.util.stream.Sink.ChainedLong</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="java.util.stream.Sink.ChainedDouble" target="java.util.stream.Sink" relationship="INNER_CLASS">
+      <point x="-58.75" y="-14.0" />
+      <point x="509.6875" y="291.0" />
+      <point x="617.5048449612405" y="291.0" />
+      <point x="617.5048449612405" y="211.0" />
+      <point x="306.625" y="211.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="java.util.stream.Sink.ChainedInt" target="java.util.stream.Sink.OfInt" relationship="REALIZATION">
+      <point x="50.5" y="-14.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="java.util.stream.Sink.OfLong" target="java.util.stream.Sink" relationship="INNER_CLASS">
+      <point x="-26.25" y="-14.0" />
+      <point x="187.45312500000003" y="201.0" />
+      <point x="306.625" y="201.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="java.util.stream.Sink.ChainedInt" target="java.util.stream.Sink" relationship="INNER_CLASS">
+      <point x="-50.5" y="-14.0" />
+      <point x="267.6822916666667" y="281.0" />
+      <point x="269.875" y="281.0" />
+      <point x="269.875" y="211.0" />
+      <point x="306.625" y="211.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="java.util.stream.Sink.OfLong" target="java.util.stream.Sink" relationship="INTERFACE_GENERALIZATION">
+      <point x="26.25" y="-14.0" />
+      <point x="239.95312500000003" y="201.0" />
+      <point x="359.12499999999994" y="201.0" />
+      <point x="359.12499999999994" y="191.0" />
+      <point x="343.95833333333337" y="191.0" />
+      <point x="37.33333333333337" y="14.0" />
+    </edge>
+    <edge source="java.util.stream.Sink.ChainedLong" target="java.util.stream.Sink.OfLong" relationship="REALIZATION">
+      <point x="54.75" y="-14.0" />
+      <point x="130.67708333333337" y="291.0" />
+      <point x="213.70312500000003" y="291.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="java.util.stream.Sink" target="java.util.function.Consumer" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="java.util.stream.Sink.OfDouble" target="java.util.stream.Sink" relationship="INNER_CLASS">
+      <point x="-30.0" y="-14.0" />
+      <point x="501.16145833333337" y="211.0" />
+      <point x="306.625" y="211.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="java.util.stream.Sink.ChainedDouble" target="java.util.stream.Sink.OfDouble" relationship="REALIZATION">
+      <point x="58.75" y="-14.0" />
+      <point x="627.1875" y="291.0" />
+      <point x="531.1614583333334" y="291.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="java.util.stream.Sink.ChainedReference" target="java.util.stream.Sink" relationship="REALIZATION">
+      <point x="-68.75" y="-14.0" />
+      <point x="-320.55208333333326" y="201.0" />
+      <point x="269.29166666666663" y="201.0" />
+      <point x="-37.33333333333334" y="14.0" />
+    </edge>
+    <edge source="java.util.stream.Sink.ChainedReference" target="java.util.stream.Sink" relationship="INNER_CLASS">
+      <point x="68.75" y="-14.0" />
+      <point x="-183.05208333333326" y="211.0" />
+      <point x="306.625" y="211.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="java.util.stream.Sink.OfInt" target="java.util.stream.Sink" relationship="INTERFACE_GENERALIZATION">
+      <point x="21.75" y="-14.0" />
+      <point x="390.4322916666667" y="201.0" />
+      <point x="358.7797965116282" y="201.0" />
+      <point x="358.7797965116282" y="191.0" />
+      <point x="343.95833333333337" y="191.0" />
+      <point x="37.33333333333337" y="14.0" />
+    </edge>
+    <edge source="java.util.stream.Sink.ChainedLong" target="java.util.stream.Sink" relationship="INNER_CLASS">
+      <point x="-54.75" y="-14.0" />
+      <point x="21.17708333333337" y="291.0" />
+      <point x="147.5" y="291.0" />
+      <point x="147.5" y="211.0" />
+      <point x="306.625" y="211.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="java.util.stream.Sink.OfInt" target="java.util.stream.Sink" relationship="INNER_CLASS">
+      <point x="-21.75" y="-14.0" />
+      <point x="346.9322916666667" y="211.0" />
+      <point x="306.625" y="211.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="java.util.function.Consumer" target="java.lang.FunctionalInterface" relationship="REALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="java.util.stream.Sink.OfDouble" target="java.util.stream.Sink" relationship="INTERFACE_GENERALIZATION">
+      <point x="30.0" y="-14.0" />
+      <point x="561.1614583333334" y="202.0" />
+      <point x="360.0818798449616" y="202.0" />
+      <point x="360.0818798449616" y="191.0" />
+      <point x="343.95833333333337" y="191.0" />
+      <point x="37.33333333333337" y="14.0" />
+    </edge>
+  </edges>
+  <settings layout="分层" zoom="0.7680000000000002" showDependencies="false" x="349.19270833333303" y="173.93749999999977" />
+  <SelectedNodes>
+    <node>java.util.stream.Sink.ChainedReference</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>内部类</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

@@ -1,4 +1,4 @@
-package jdk_proxy.proxy_source;
+package jdk_proxy.proxy_source.framework;
 
 import java.io.Serial;
 import java.lang.invoke.MethodHandle;

@@ -1,0 +1,26 @@
+@startuml
+
+' 设置主题： !theme 指令
+!theme plain
+
+top to bottom direction
+
+' 设置样式
+skinparam linetype ortho
+
+
+interface AutoCloseable << interface >>
+interface BaseStream<T, S> << interface >>
+interface DoubleStream << interface >>
+interface IntStream << interface >>
+interface LongStream << interface >>
+interface Stream<T> << interface >>
+
+
+AutoCloseable  ^-[#008200,plain]-   BaseStream
+BaseStream     ^-[#008200,plain]-   DoubleStream
+BaseStream     ^-[#008200,plain]-   IntStream
+BaseStream     ^-[#008200,plain]-   LongStream
+BaseStream     ^-[#008200,plain]-   Stream
+
+@enduml

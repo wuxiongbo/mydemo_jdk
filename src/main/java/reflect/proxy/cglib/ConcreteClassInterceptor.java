@@ -24,6 +24,7 @@ public class ConcreteClassInterceptor implements MethodInterceptor {
 
     private final Object object;
 
+    // 依赖注入 被代理的原始对象
     public ConcreteClassInterceptor(Object object){
         this.object = object;
     }

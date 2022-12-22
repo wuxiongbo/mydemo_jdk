@@ -23,6 +23,7 @@ public class ConcreteClassInterceptor1 implements MethodInterceptor1 {
 
     private final Object object;
 
+    // 依赖注入 被代理的原始对象
     public ConcreteClassInterceptor1(Object object){
         this.object = object;
     }
@@ -32,7 +33,7 @@ public class ConcreteClassInterceptor1 implements MethodInterceptor1 {
      * @param proxy         由CGLib动态生成的代理类实例
      * @param method        被代理类的原方法引用
      * @param args          方法参数值列表
-     * @param methodProxy1  代理类的代理后方法引用。  {@link MethodProxy1}
+     * @param methodProxy1  代理类的代理后方法引用。 每个方法都有对应的 methodProxy  {@link MethodProxy1}
      *
      * @return              从代理实例的方法调用返回的值
      * @throws Throwable

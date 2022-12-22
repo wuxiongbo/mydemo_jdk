@@ -4,7 +4,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 /**
- * <p>描述类的信息</p>
+ * <p>集合交集</p>
  *
  * <pre>
  * @author wuxiongbo
@@ -64,7 +64,7 @@ public class MergeList {
         String s2 = "10000,30000,50000,100000,";
         String[] a1 = s1.split(",");
         String[] a2 = s2.split(",");
-        List<String> list = new ArrayList(Arrays.asList(a1));
+        List<String> list = new ArrayList<>(Arrays.asList(a1));
         boolean a = list.retainAll(Arrays.asList(a2));
         System.out.println(a);
         for(String s : list){

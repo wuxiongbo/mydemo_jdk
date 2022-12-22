@@ -1,7 +1,10 @@
 package genericity;
 
+import genericity.hold.A;
+import genericity.hold.Hold;
+
 /**
- * <p>描述类的信息</p>
+ * <p>模拟 业务service层</p>
  *
  * <pre>
  * @author wuxiongbo

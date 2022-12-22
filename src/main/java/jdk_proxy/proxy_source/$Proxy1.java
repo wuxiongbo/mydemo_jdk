@@ -1,10 +1,10 @@
 package jdk_proxy.proxy_source;
 
 import jdk_proxy.bean.Person;
+import jdk_proxy.proxy_source.framework.Proxy1;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
-import java.lang.reflect.Proxy;
 import java.lang.reflect.UndeclaredThrowableException;
 
 /**

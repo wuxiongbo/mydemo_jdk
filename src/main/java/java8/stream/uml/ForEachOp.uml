@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>java.util.stream.ForEachOps.ForEachOp</OriginalElement>
+  <nodes>
+    <node x="323.9999999999999" y="64.0">java.util.function.Consumer</node>
+    <node x="520.4999999999999" y="408.0">java.util.stream.FindOps.FindSink.OfRef</node>
+    <node x="395.4999999999999" y="408.0">java.util.stream.FindOps.FindSink.OfLong</node>
+    <node x="-346.0" y="408.0">java.util.stream.ForEachOps.ForEachOp.OfLong</node>
+    <node x="-114.00000000000011" y="408.0">java.util.stream.ForEachOps.ForEachOp.OfRef</node>
+    <node x="346.4999999999999" y="144.0">java.util.stream.Sink</node>
+    <node x="-221.0000000000001" y="408.0">java.util.stream.ForEachOps.ForEachOp.OfInt</node>
+    <node x="-158.6250000000001" y="318.0">java.util.stream.ForEachOps.ForEachOp</node>
+    <node x="161.18534482758616" y="236.0">java.util.stream.TerminalSink</node>
+    <node x="29.999999999999886" y="408.0">java.util.stream.ForEachOps.ForEachOp.OfDouble</node>
+    <node x="391.7499999999999" y="-14.0">java.lang.FunctionalInterface</node>
+    <node x="236.68965517241372" y="408.0">java.util.stream.FindOps.FindSink.OfDouble</node>
+    <node x="664.4999999999999" y="408.0">java.util.stream.FindOps.FindSink.OfInt</node>
+    <node x="-180.6250000000001" y="236.0">java.util.stream.TerminalOp</node>
+    <node x="732.185344827586" y="64.0">java.util.function.Supplier</node>
+    <node x="456.9999999999999" y="318.0">java.util.stream.FindOps.FindSink</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="java.util.stream.ForEachOps.ForEachOp.OfLong" target="java.util.stream.Sink" relationship="REALIZATION">
+      <point x="-35.0" y="-14.0" />
+      <point x="-328.5" y="387.0" />
+      <point x="-303.5" y="387.0" />
+      <point x="-303.5" y="214.0" />
+      <point x="159.9999999999999" y="214.0" />
+      <point x="159.9999999999999" y="194.0" />
+      <point x="374.4999999999999" y="194.0" />
+      <point x="-28.0" y="14.0" />
+    </edge>
+    <edge source="java.util.stream.FindOps.FindSink.OfInt" target="java.util.stream.FindOps.FindSink" relationship="INNER_CLASS">
+      <point x="-29.0" y="-14.0" />
+      <point x="679.0" y="387.0" />
+      <point x="463.3419540229884" y="387.0" />
+      <point x="463.3419540229884" y="367.0" />
+      <point x="497.9999999999999" y="367.0" />
+      <point x="-41.0" y="14.0" />
+    </edge>
+    <edge source="java.util.stream.FindOps.FindSink.OfLong" target="java.util.stream.FindOps.FindSink" relationship="GENERALIZATION">
+      <point x="35.0" y="-14.0" />
+      <point x="482.9999999999999" y="377.0" />
+      <point x="687.846264367816" y="377.0" />
+      <point x="687.846264367816" y="367.0" />
+      <point x="579.9999999999999" y="367.0" />
+      <point x="41.0" y="14.0" />
+    </edge>
+    <edge source="java.util.stream.ForEachOps.ForEachOp.OfDouble" target="java.util.stream.ForEachOps.ForEachOp" relationship="INNER_CLASS">
+      <point x="30.0" y="-14.0" />
+      <point x="119.99999999999989" y="377.0" />
+      <point x="-72.12500000000011" y="377.0" />
+      <point x="-72.12500000000011" y="367.0" />
+      <point x="-36.375000000000114" y="367.0" />
+      <point x="40.75" y="14.0" />
+    </edge>
+    <edge source="java.util.stream.ForEachOps.ForEachOp.OfRef" target="java.util.stream.ForEachOps.ForEachOp" relationship="GENERALIZATION">
+      <point x="-31.0" y="-14.0" />
+      <point x="-82.12500000000011" y="367.0" />
+      <point x="-117.87500000000011" y="367.0" />
+      <point x="-40.75" y="14.0" />
+    </edge>
+    <edge source="java.util.stream.ForEachOps.ForEachOp.OfLong" target="java.util.stream.ForEachOps.ForEachOp" relationship="INNER_CLASS">
+      <point x="35.0" y="-14.0" />
+      <point x="-258.5" y="377.0" />
+      <point x="-72.12500000000011" y="377.0" />
+      <point x="-72.12500000000011" y="367.0" />
+      <point x="-36.375000000000114" y="367.0" />
+      <point x="40.75" y="14.0" />
+    </edge>
+    <edge source="java.util.stream.FindOps.FindSink.OfDouble" target="java.util.stream.Sink" relationship="REALIZATION">
+      <point x="-40.0" y="-14.0" />
+      <point x="256.6896551724137" y="387.0" />
+      <point x="150.68534482758616" y="387.0" />
+      <point x="150.68534482758616" y="214.0" />
+      <point x="159.9999999999999" y="214.0" />
+      <point x="159.9999999999999" y="194.0" />
+      <point x="374.4999999999999" y="194.0" />
+      <point x="-28.0" y="14.0" />
+    </edge>
+    <edge source="java.util.stream.ForEachOps.ForEachOp.OfInt" target="java.util.stream.Sink" relationship="REALIZATION">
+      <point x="-29.0" y="-14.0" />
+      <point x="-206.5000000000001" y="367.0" />
+      <point x="-225.56465517241384" y="367.0" />
+      <point x="-225.56465517241384" y="214.0" />
+      <point x="159.9999999999999" y="214.0" />
+      <point x="159.9999999999999" y="194.0" />
+      <point x="374.4999999999999" y="194.0" />
+      <point x="-28.0" y="14.0" />
+    </edge>
+    <edge source="java.util.stream.FindOps.FindSink.OfInt" target="java.util.stream.FindOps.FindSink" relationship="GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="708.0" y="377.0" />
+      <point x="687.846264367816" y="377.0" />
+      <point x="687.846264367816" y="367.0" />
+      <point x="579.9999999999999" y="367.0" />
+      <point x="41.0" y="14.0" />
+    </edge>
+    <edge source="java.util.stream.ForEachOps.ForEachOp.OfInt" target="java.util.stream.ForEachOps.ForEachOp" relationship="INNER_CLASS">
+      <point x="29.0" y="-14.0" />
+      <point x="-148.5000000000001" y="377.0" />
+      <point x="-72.12500000000011" y="377.0" />
+      <point x="-72.12500000000011" y="367.0" />
+      <point x="-36.375000000000114" y="367.0" />
+      <point x="40.75" y="14.0" />
+    </edge>
+    <edge source="java.util.stream.FindOps.FindSink" target="java.util.stream.TerminalSink" relationship="REALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="538.9999999999999" y="286.0" />
+      <point x="257.68534482758616" y="286.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="java.util.stream.ForEachOps.ForEachOp.OfLong" target="java.util.stream.ForEachOps.ForEachOp" relationship="GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="-293.5" y="387.0" />
+      <point x="-82.12500000000011" y="387.0" />
+      <point x="-82.12500000000011" y="367.0" />
+      <point x="-117.87500000000011" y="367.0" />
+      <point x="-40.75" y="14.0" />
+    </edge>
+    <edge source="java.util.stream.FindOps.FindSink.OfDouble" target="java.util.stream.FindOps.FindSink" relationship="INNER_CLASS">
+      <point x="0.0" y="-14.0" />
+      <point x="296.6896551724137" y="387.0" />
+      <point x="463.3419540229884" y="387.0" />
+      <point x="463.3419540229884" y="367.0" />
+      <point x="497.9999999999999" y="367.0" />
+      <point x="-41.0" y="14.0" />
+    </edge>
+    <edge source="java.util.stream.FindOps.FindSink.OfLong" target="java.util.stream.FindOps.FindSink" relationship="INNER_CLASS">
+      <point x="0.0" y="-14.0" />
+      <point x="447.9999999999999" y="387.0" />
+      <point x="463.3419540229884" y="387.0" />
+      <point x="463.3419540229884" y="367.0" />
+      <point x="497.9999999999999" y="367.0" />
+      <point x="-41.0" y="14.0" />
+    </edge>
+    <edge source="java.util.stream.TerminalSink" target="java.util.stream.Sink" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="257.68534482758616" y="204.0" />
+      <point x="803.185344827586" y="204.0" />
+      <point x="803.185344827586" y="194.0" />
+      <point x="430.4999999999999" y="194.0" />
+      <point x="28.0" y="14.0" />
+    </edge>
+    <edge source="java.util.stream.FindOps.FindSink.OfLong" target="java.util.stream.Sink" relationship="REALIZATION">
+      <point x="-35.0" y="-14.0" />
+      <point x="412.9999999999999" y="367.0" />
+      <point x="364.68534482758616" y="367.0" />
+      <point x="364.68534482758616" y="214.0" />
+      <point x="159.9999999999999" y="214.0" />
+      <point x="159.9999999999999" y="194.0" />
+      <point x="374.4999999999999" y="194.0" />
+      <point x="-28.0" y="14.0" />
+    </edge>
+    <edge source="java.util.stream.FindOps.FindSink.OfDouble" target="java.util.stream.FindOps.FindSink" relationship="GENERALIZATION">
+      <point x="40.0" y="-14.0" />
+      <point x="336.6896551724137" y="377.0" />
+      <point x="687.846264367816" y="377.0" />
+      <point x="687.846264367816" y="367.0" />
+      <point x="579.9999999999999" y="367.0" />
+      <point x="41.0" y="14.0" />
+    </edge>
+    <edge source="java.util.stream.FindOps.FindSink.OfRef" target="java.util.stream.FindOps.FindSink" relationship="INNER_CLASS">
+      <point x="-31.0" y="-14.0" />
+      <point x="551.4999999999999" y="387.0" />
+      <point x="463.3419540229884" y="387.0" />
+      <point x="463.3419540229884" y="367.0" />
+      <point x="497.9999999999999" y="367.0" />
+      <point x="-41.0" y="14.0" />
+    </edge>
+    <edge source="java.util.stream.ForEachOps.ForEachOp" target="java.util.stream.TerminalSink" relationship="REALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="-77.12500000000011" y="296.0" />
+      <point x="257.68534482758616" y="296.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="java.util.stream.ForEachOps.ForEachOp.OfInt" target="java.util.stream.ForEachOps.ForEachOp" relationship="GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="-177.5000000000001" y="387.0" />
+      <point x="-82.12500000000011" y="387.0" />
+      <point x="-82.12500000000011" y="367.0" />
+      <point x="-117.87500000000011" y="367.0" />
+      <point x="-40.75" y="14.0" />
+    </edge>
+    <edge source="java.util.stream.FindOps.FindSink.OfInt" target="java.util.stream.Sink" relationship="REALIZATION">
+      <point x="29.0" y="-14.0" />
+      <point x="737.0" y="387.0" />
+      <point x="729.4396551724137" y="387.0" />
+      <point x="729.4396551724137" y="214.0" />
+      <point x="159.9999999999999" y="214.0" />
+      <point x="159.9999999999999" y="194.0" />
+      <point x="374.4999999999999" y="194.0" />
+      <point x="-28.0" y="14.0" />
+    </edge>
+    <edge source="java.util.stream.Sink" target="java.util.function.Consumer" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="java.util.function.Supplier" target="java.lang.FunctionalInterface" relationship="REALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="803.185344827586" y="39.0" />
+      <point x="487.2499999999999" y="39.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="java.util.stream.ForEachOps.ForEachOp" target="java.util.stream.TerminalOp" relationship="REALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="java.util.stream.ForEachOps.ForEachOp.OfDouble" target="java.util.stream.ForEachOps.ForEachOp" relationship="GENERALIZATION">
+      <point x="-30.0" y="-14.0" />
+      <point x="59.999999999999886" y="387.0" />
+      <point x="-82.12500000000011" y="387.0" />
+      <point x="-82.12500000000011" y="367.0" />
+      <point x="-117.87500000000011" y="367.0" />
+      <point x="-40.75" y="14.0" />
+    </edge>
+    <edge source="java.util.stream.ForEachOps.ForEachOp.OfDouble" target="java.util.stream.Sink" relationship="REALIZATION">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="java.util.stream.TerminalSink" target="java.util.function.Supplier" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="257.68534482758616" y="204.0" />
+      <point x="803.185344827586" y="204.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="java.util.stream.FindOps.FindSink.OfRef" target="java.util.stream.FindOps.FindSink" relationship="GENERALIZATION">
+      <point x="31.0" y="-14.0" />
+      <point x="613.4999999999999" y="377.0" />
+      <point x="687.846264367816" y="377.0" />
+      <point x="687.846264367816" y="367.0" />
+      <point x="579.9999999999999" y="367.0" />
+      <point x="41.0" y="14.0" />
+    </edge>
+    <edge source="java.util.stream.ForEachOps.ForEachOp.OfRef" target="java.util.stream.ForEachOps.ForEachOp" relationship="INNER_CLASS">
+      <point x="31.0" y="-14.0" />
+      <point x="-21.000000000000114" y="377.0" />
+      <point x="-72.12500000000011" y="377.0" />
+      <point x="-72.12500000000011" y="367.0" />
+      <point x="-36.375000000000114" y="367.0" />
+      <point x="40.75" y="14.0" />
+    </edge>
+    <edge source="java.util.function.Consumer" target="java.lang.FunctionalInterface" relationship="REALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="402.4999999999999" y="39.0" />
+      <point x="487.2499999999999" y="39.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+  </edges>
+  <settings layout="分层" zoom="1.1933924254633361" showDependencies="false" x="274.5" y="221.0" />
+  <SelectedNodes>
+    <node>java.util.stream.FindOps.FindSink</node>
+    <node>java.util.stream.FindOps.FindSink.OfDouble</node>
+    <node>java.util.stream.FindOps.FindSink.OfRef</node>
+    <node>java.util.stream.FindOps.FindSink.OfLong</node>
+    <node>java.util.stream.FindOps.FindSink.OfInt</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>内部类</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

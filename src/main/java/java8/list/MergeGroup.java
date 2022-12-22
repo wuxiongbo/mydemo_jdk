@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
  * </pre>
  */
 public class MergeGroup {
-    public static void main(String[] args){
+    public static void main(String[] args) {
         List<List<String>> groupList = new ArrayList<>();
 
         List<String> a = new ArrayList<>();
@@ -33,14 +33,14 @@ public class MergeGroup {
         System.out.println(groupList);
 
         //合并后
-        Map<Integer,List<String>> groupMap = new LinkedHashMap<>();
+        Map<Integer, List<String>> groupMap = new LinkedHashMap<>();
 
         Integer initKey = 1;
         if (isNotEmpty(groupList)) {
             for (List<String> group : groupList) {
-                if(groupMap.get(initKey)==null){
-                    groupMap.put(initKey,group);
-                }else{
+                if (groupMap.get(initKey) == null) {
+                    groupMap.put(initKey, group);
+                } else {
                     // 有合并
                     boolean merged = false;
                     for (int i = 1; i <= initKey; i++) {
@@ -48,18 +48,18 @@ public class MergeGroup {
                         List<String> newGroup = new ArrayList<>(groupMap.get(i));
 
 //                        合并策略
-                        boolean filter = contains(newGroup,group);
+                        boolean filter = contains(newGroup, group);
 //                        boolean filter = isNotEmpty(overlap(newGroup,group));
-                        if(filter){
+                        if (filter) {
                             newGroup.addAll(group);
                             newGroup = newGroup.stream().distinct().sorted().collect(Collectors.toList());
-                            groupMap.put(i,newGroup);
+                            groupMap.put(i, newGroup);
                             merged = true;
                             break;
                         }
                     }
-                    if(!merged){
-                        groupMap.put(++initKey,group);
+                    if (!merged) {
+                        groupMap.put(++initKey, group);
                     }
                 }
             }
@@ -71,16 +71,16 @@ public class MergeGroup {
 
     }
 
-    private static <T> boolean isNotEmpty(List<T> list){
-        return list!=null&&list.size()!=0;
+    private static <T> boolean isNotEmpty(List<T> list) {
+        return list != null && list.size() != 0;
     }
 
 
-    private static <T> boolean contains(List<T> list1,List<T> list2){
+    private static <T> boolean contains(List<T> list1, List<T> list2) {
         return list1.containsAll(list2) || list2.containsAll(list1);
     }
 
-    private static <T> List<T> overlap(List<T> list1,List<T> list2){
+    private static <T> List<T> overlap(List<T> list1, List<T> list2) {
         List<T> collect = list1.stream().filter(num -> list2.contains(num))
                 .collect(Collectors.toList());
         return collect;

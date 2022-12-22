@@ -1,4 +1,4 @@
-package jdk_proxy.proxy_source;
+package jdk_proxy.proxy_source.framework;
 
 import jdk.internal.org.objectweb.asm.ClassWriter;
 import jdk.internal.org.objectweb.asm.Label;

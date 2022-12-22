@@ -373,12 +373,21 @@ public class C0000x27e1ddf4 extends FastClass {
                 case 9:
                     // 原始 getConcreteMethodB
                     return proxy.CGLIB$getConcreteMethodB$0(((Number) objArr[0]).intValue());
-                case 10:
-                    // 原始 toString
-                    return proxy.CGLIB$toString$3();
+                case 14:
+                    // 代理 getConcreteMethodB
+                    return proxy.getConcreteMethodB(((Number) objArr[0]).intValue());
+
                 case 11:
                     // 原始 getConcreteMethodA
                     return proxy.CGLIB$getConcreteMethodA$1((String) objArr[0]);
+                case 16:
+                    // 代理 getConcreteMethodA
+                    return proxy.getConcreteMethodA((String) objArr[0]);
+
+
+                case 10:
+                    // 原始 toString
+                    return proxy.CGLIB$toString$3();
                 case 12:
                     // 原始 hashCode
                     return proxy.CGLIB$hashCode$4();
@@ -387,17 +396,13 @@ public class C0000x27e1ddf4 extends FastClass {
                     return proxy.CGLIB$clone$5();
 
 
-                case 14:
-                    // 代理 getConcreteMethodB
-                    return proxy.getConcreteMethodB(((Number) objArr[0]).intValue());
+
 
                 case 15:
                     proxy.setCallback(((Number) objArr[0]).intValue(), (Callback) objArr[1]);
                     return null;
 
-                case 16:
-                    // 代理 getConcreteMethodA
-                    return proxy.getConcreteMethodA((String) objArr[0]);
+
 
 
 
