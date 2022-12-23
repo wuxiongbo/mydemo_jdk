@@ -329,6 +329,24 @@ public class C0000x27e1ddf4 extends FastClass {
         ConcreteClassNoInterface$$EnhancerByCGLIB$$bd737885 proxy = (ConcreteClassNoInterface$$EnhancerByCGLIB$$bd737885) obj;
         try {
             switch (i) {
+
+                // ========通常走这里=========
+                case 9:
+                    // 原始 getConcreteMethodB
+                    return proxy.CGLIB$getConcreteMethodB$0(((Number) objArr[0]).intValue());
+                case 14:
+                    // 代理 getConcreteMethodB
+                    return proxy.getConcreteMethodB(((Number) objArr[0]).intValue());
+
+                case 11:
+                    // 原始 getConcreteMethodA
+                    return proxy.CGLIB$getConcreteMethodA$1((String) objArr[0]);
+                case 16:
+                    // 代理 getConcreteMethodA
+                    return proxy.getConcreteMethodA((String) objArr[0]);
+
+
+
                 case 0:
                     // 代理 equals
                     return proxy.equals(objArr[0]);
@@ -341,7 +359,6 @@ public class C0000x27e1ddf4 extends FastClass {
                 case 3:
                     // 代理 clone
                     return proxy.clone();
-
 
 
                 case 4:
@@ -369,20 +386,7 @@ public class C0000x27e1ddf4 extends FastClass {
                     ConcreteClassNoInterface$$EnhancerByCGLIB$$bd737885.CGLIB$STATICHOOK1();
                     return null;
 
-                // ========通常走这里=========
-                case 9:
-                    // 原始 getConcreteMethodB
-                    return proxy.CGLIB$getConcreteMethodB$0(((Number) objArr[0]).intValue());
-                case 14:
-                    // 代理 getConcreteMethodB
-                    return proxy.getConcreteMethodB(((Number) objArr[0]).intValue());
 
-                case 11:
-                    // 原始 getConcreteMethodA
-                    return proxy.CGLIB$getConcreteMethodA$1((String) objArr[0]);
-                case 16:
-                    // 代理 getConcreteMethodA
-                    return proxy.getConcreteMethodA((String) objArr[0]);
 
 
                 case 10:
