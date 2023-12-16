@@ -3,7 +3,7 @@ package spring_utils.bean_utils;
 import org.springframework.beans.BeanUtils;
 
 /**
- * <p>描述类的信息</p>
+ * <p>深拷贝</p>
  *
  * <pre>
  * @author wuxiongbo
@@ -16,13 +16,17 @@ public class BeanUtilsDemo {
         c.setSkill("say hello");
         c.setName("son");
 
+
         Child c1 = copy(c);
+
         System.out.println(c1);
     }
 
     private static Child copy(Father f){
         Child c = new Child();
+
         BeanUtils.copyProperties(f, c);
+
         return c;
     }
 }

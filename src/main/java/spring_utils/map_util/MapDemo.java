@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * <p>描述类的信息</p>
+ * <p>多值map</p>
  *
  * <pre>
  * @author wuxiongbo
